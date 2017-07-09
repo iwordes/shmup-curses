@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 23:24:58 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 23:38:20 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ Player::~Player() {}
 void	Player::onTick(World &world)
 {
 	int c;
-
 
 	werase(world.winHud);
 	mvwprintw(world.winHud, 0, 0, ": +%u -- %.2u:%.2u (%u)", hp, this->time / 1000 / 60, this->time / 1000 % 60, this->time / 50);
@@ -86,7 +85,7 @@ void	Player::onTick(World &world)
 
 void Player::onFire(World &world)
 {
-	world.addBg(new Projectile("=", x + 1, y, 2, false));
+	world.addFg(new Projectile("=", x + 1, y, 2, 4, false));
 }
 
 /*
