@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:40:58 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 22:58:32 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 02:10:47 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ public:
 
 	const Player &operator=(const Player &rhs);
 
-	uint8_t ttFire;
-	uint8_t maxTtFire;
 
-	uint8_t ttMove;
+	uint8_t maxTtFire;
 	uint8_t maxTtMove;
+
+	uint8_t ttFire;
+	uint8_t ttMove;
+	uint8_t ttHit;
 
 	int8_t hp;
 
@@ -41,6 +43,8 @@ public:
 	void onTick(World &world);
 	void onMove(World &world);
 	void onFire(World &world);
+
+	bool onHit(World &world, Entity &by);
 };
 
 #endif

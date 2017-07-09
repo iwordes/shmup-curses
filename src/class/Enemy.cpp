@@ -6,28 +6,21 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 00:42:12 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 01:15:29 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 02:20:04 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Enemy.hpp>
 
-Enemy::Enemy(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h)
+Enemy::Enemy(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h): Entity(icon, x, y, w, h)
 {
-	this->icon = icon;
-	this->w = w;
-	this->h = h;
-	this->x = x;
-	this->y = y;
+	this->type = 1;
 
-	this->score = 100;
-	this->isSolid = true;
-	this->isHostile = true;
-
-	this->maxTtFire = 20;
+	this->maxTtFire = 60;
 	this->maxTtMove = 20;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
+	this->score = 100;
 }
 
 Enemy::Enemy(const Enemy &copy)
@@ -39,27 +32,18 @@ Enemy::~Enemy() {}
 
 const Enemy &Enemy::operator=(const Enemy &rhs)
 {
-	this->icon = rhs.icon;
-	this->w = rhs.w;
-	this->h = rhs.h;
-	this->x = rhs.x;
-	this->y = rhs.y;
-
-	this->score = rhs.score;
-	this->isSolid = rhs.isSolid;
-	this->isHostile = rhs.isHostile;
-
+	Entity::operator=(rhs);
 	this->maxTtFire = rhs.maxTtFire;
 	this->maxTtMove = rhs.maxTtMove;
 	this->ttFire = rhs.ttFire;
 	this->ttMove = rhs.ttMove;
-
+	this->score = rhs.score;
 	return *this;
 }
 
 // =====================================================================================================================
 
-void Enemy::onTick(World &world)
+void Enemy::onTick(World &)
 {
 	if (this->ttMove <= 0)
 	{
@@ -69,7 +53,7 @@ void Enemy::onTick(World &world)
 
 	if (this->ttFire <= 0)
 	{
-		world.addFg(new Projectile("c", x - 1, y, -4));
+		//world.addFg(new Projectile(type, "c", x - 1, y, -4));
 		ttFire = maxTtMove;
 	}
 

@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 01:15:56 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 02:30:20 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ World::World(uint32_t w, uint32_t h)
 
 	// this->clock = 0;
 
-	this->maxTtSpawn = 120;
-	this->minTtSpawn = 6;
-	this->ttSpawn = 60;
+	this->maxTtWave = 120;
+	this->minTtWave = 6;
+	this->ttWave = 60;
+	this->wave = 0;
 
 	// -----------------------------------
 
@@ -95,7 +96,8 @@ void World::start()
 			usleep(50000 - (t2 - t1));
 	}
 
-	mvwprintw(winHud, 0, 0, ":: You lose! ::                   ");
+	werase(winHud);
+	mvwprintw(winHud, 0, w / 2 - 7, ":: You lose! ::");
 	wrefresh(winHud);
 	pause();
 }
@@ -112,14 +114,15 @@ void World::tick()
 		if (fg[i] != NULL && bound(*fg[i]) && (!collide(*fg[i])/* || fg[i]->isImmortal */))
 			fg[i]->onTick(*this);
 
-	if (ttSpawn <= 0)
+	if (ttWave <= 0)
 	{
-		ttSpawn = maxTtSpawn;
-		if (maxTtSpawn > minTtSpawn)
-			maxTtSpawn -= 3;
+		ttWave = maxTtWave;
+		if (maxTtWave > minTtWave)
+			maxTtWave -= 3;
+		wave += 1;
 		spawn();
 	}
-	ttSpawn--;
+	ttWave--;
 
 	draw();
 }
@@ -181,8 +184,7 @@ static inline bool doesCollide(const Entity &e1, const Entity &e2)
 {
 	return (
 		(
-			e1.isSolid && e2.isSolid &&
-			e1.isHostile != e2.isHostile
+			e1.type != e2.type
 		) &&
 		(
 			e1.x < e2.x + e2.w && // Le1 < Re2 &&
@@ -197,8 +199,6 @@ static inline bool doesCollide(const Entity &e1, const Entity &e2)
 
 bool World::collide(Entity &e)
 {
-	if (!e.isSolid)
-		return (false);
 	for (uint32_t i = 0; i < fgLen; i++)
 		if (fg[i] != NULL)
 			if (doesCollide(e, *fg[i]))
@@ -209,12 +209,22 @@ bool World::collide(Entity &e)
 					if (fg[f] == &e)
 						break;
 
-				delete fg[f];
-				delete fg[i];
-				fg[f] = NULL;
-				fg[i] = NULL;
+				// bool del1 = fg[i]->onHit(*this, *fg[f]);
+				// bool del2 = fg[f]->onHit(*this, *fg[i]);
 
-				return (true);
+				// if (del1)
+				// {
+					delete fg[i];
+					fg[i] = NULL;
+				// }
+				// if (del2)
+				// {
+					delete fg[f];
+					fg[f] = NULL;
+				// }
+
+				// return (del1);
+				return true;
 			}
 	return (false);
 }

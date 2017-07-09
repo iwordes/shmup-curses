@@ -6,29 +6,22 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 01:13:49 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 02:23:43 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Player.hpp>
 
-Player::Player(uint16_t x, uint16_t y)
+Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 {
-	this->icon = ">";
-	this->w = 1;
-	this->h = 1;
-	this->isSolid = true;
-	this->isHostile = false;
-
-	this->x = x;
-	this->y = y;
-
-	this->hp = 3;
+	this->type = 0;
 
 	this->maxTtFire = 12;
 	this->maxTtMove = 2;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
+	this->ttHit = 0;
+	this->hp = 3;
 }
 
 Player::Player(const Player &)
@@ -38,13 +31,23 @@ Player::Player(const Player &)
 
 Player::~Player() {}
 
+const Player &Player::operator=(const Player &)
+{
+	throw "Don't do that.";
+}
+
+// =====================================================================================================================
 
 void	Player::onTick(World &world)
 {
 	int c;
 
 	werase(world.winHud);
-	mvwprintw(world.winHud, 0, 0, ": +%u -- %.2u:%.2u (%u)", hp, this->time / 1000 / 60, this->time / 1000 % 60, this->time / 50);
+	mvwprintw(world.winHud, 0, 0, ": +%u -- %.2u:%.2u (%u) -- Wave %u -- T-%.2u:%.2u.%.3u",
+		hp,
+		this->time / 1000 / 60, this->time / 1000 % 60, this->time / 50,
+		world.wave, world.ttWave * 50 / 1000 / 60, world.ttWave * 50 / 1000 % 60, world.ttWave * 50 % 1000);
+	wrefresh(world.winHud);
 
 	if ((c = getch()) != ERR)
 	{
@@ -62,9 +65,8 @@ void	Player::onTick(World &world)
 			else
 				ttMove = 0;
 		}
-
+		while (getch() != ERR);
 	}
-	while (getch() != ERR);
 
 	if (ttFire == 0)
 	{
@@ -79,18 +81,16 @@ void	Player::onTick(World &world)
 
 	this->time += 50;
 	this->score += 5;
-
-	wrefresh(world.winHud);
 }
 
 void Player::onFire(World &world)
 {
-	world.addFg(new Projectile("=", x + 1, y, 2, 0, false));
+	world.addFg(new Projectile(type, "=", x + 1, y, 1));
 }
 
-/*
 bool Player::onHit(World &, Entity &)
 {
+	if (ttHit > 0)
+		return (false);
 	return (--hp <= 0);
 }
-*/

@@ -1,45 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Entity.cpp                                         :+:      :+:    :+:   */
+/*   Scenery.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/08 12:17:27 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 02:08:09 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/09 01:49:21 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/09 01:54:02 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Entity.hpp>
-#include <World.hpp>
+#include <Scenery.hpp>
 
-Entity::Entity(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h)
+Scenery::Scenery(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h): Entity(icon, x, y, w, h)
 {
-	this->icon = icon;
-	this->w = w;
-	this->h = h;
-	this->x = x;
-	this->y = y;
+	type = -1;
 }
 
-Entity::Entity(const Entity &)
+Scenery::Scenery(const Scenery &copy)
 {
-	throw "Don't do that.";
+	*this = copy;
 }
 
-Entity::~Entity() {}
+Scenery::~Scenery() {}
 
-const Entity &Entity::operator=(const Entity &rhs)
+const Scenery &Scenery::operator=(const Scenery &rhs):
 {
-	this->icon = rhs.icon;
-	this->w = rhs.w;
-	this->h = rhs.h;
-	this->x = rhs.x;
-	this->y = rhs.y;
+	Entity::operator=(rhs);
 	return (*this);
 }
 
 // =====================================================================================================================
 
-void Entity::onTick(World &) {}
-bool Entity::onHit(World &, Entity &) { return true; }
+bool Scenery::onHit(World &, Entity &) { return false; }
