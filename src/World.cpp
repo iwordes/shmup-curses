@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 14:55:14 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 16:52:06 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ World::World(uint32_t w, uint32_t h)
 
 	// this->clock = 0;
 
-	this->ttScene = 10;
+	this->maxTtSpawn = 63;
+	this->minTtSpawn = 9;
 	this->ttSpawn = 60;
+	this->ttScene = 10;
 
-	this->maxTtWave = 1200;
-	this->minTtWave = 120;
 	this->ttWave = 60;
 	this->wave = 0;
 
@@ -131,13 +131,26 @@ void World::tick()
 
 	if (ttWave <= 0)
 	{
-		ttWave = maxTtWave;
-		if (maxTtWave > minTtWave)
-			maxTtWave -= 3;
+		ttWave = 400 + wave * 60;
+		if (maxTtSpawn > minTtSpawn)
+			maxTtSpawn -= 3;
 		wave += 1;
-		spawn();
 	}
 	ttWave--;
+
+	if (ttSpawn <= 0)
+	{
+		ttSpawn = maxTtSpawn;
+		spawn();
+	}
+	ttSpawn--;
+
+	if (ttScene <= 0)
+	{
+		ttScene = 20;// + rng() % 100;
+		// scene();
+	}
+	ttScene--;
 
 	draw();
 }

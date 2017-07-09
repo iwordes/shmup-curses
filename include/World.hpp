@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 14:55:59 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 16:41:01 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ public:
 	WINDOW *term;
 	WINDOW *winGame;
 	WINDOW *winHud;
+
+	uint32_t maxTtSpawn;
+	uint32_t minTtSpawn;
+	uint32_t ttSpawn;
 
 	uint32_t ttScene;
 	uint32_t ttSpawn;

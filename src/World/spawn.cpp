@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 12:11:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 12:11:43 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 16:50:22 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,33 @@
 static std::random_device rd;
 static std::mt19937 rng(rd());
 
+static bool chance(int n, int max)
+{
+	return (rng() % max < n);
+}
+
+#define ADD(T) addFg(new T(w - 1, rng() % h))
+
 void World::spawn()
 {
-	switch (rng() % 3)
-	{
-		case 0: addFg(new Enemy("<", w - 1, rng() % h)); break;
-		case 1: addFg(new EnemyBomber(w - 1, rng() % h)); break;
-		case 2: addFg(new EnemyOcto(w - 1, rng() % h)); break;
-	}
+	if (wave > 20 && chance(1, 10))
+		;// ...
+	else if (wave > 20 && chance(1, 10))
+		;// ...
+	else if (wave > 15 && chance(1, 8))
+		;// ...
+	else if (wave > 15 && chance(1, 8))
+		;// ...
+	else if (wave > 10 && chance(1, 7))
+		ADD(EnemyOcto);
+	else if (wave > 10 && chance(1, 6))
+		;// ...
+	else if (wave > 5 && chance(1, 4))
+		;// ...
+	else if (wave > 5 && chance(1, 4))
+		ADD(EnemyBomber);
+	else if (chance(1, 3))
+		;// ... ADD(EnemyShooter);
+	else
+		ADD(EnemyKamikaze);
 }
