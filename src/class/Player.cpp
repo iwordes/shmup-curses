@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 13:00:11 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 13:40:12 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,17 @@ void	Player::onTick(World &world)
 {
 	int c;
 
+	// DEBUG
 	uint32_t n = 0;
 	for (uint32_t i = 0; i < world.fgLen; i++)
 		if (world.fg[i] != NULL)
 			n++;
+	// DEBUG
 
 	werase(world.winHud);
-	mvwprintw(world.winHud, 0, 0, " %u lives -- %.2u:%.2u -- Wave %u -- T-%.2u:%.2u.%.3u -- Score: %u :: T%u, E%u (%u)",
+	mvwprintw(world.winHud, 0, 0, " %u lives -- %.2u:%.2u%.3u -- Wave %u -- T-%.2u:%.2u.%.3u -- Score: %u :: T%u, E%u (%u)",
 		hp,
-		this->time / 1000 / 60, this->time / 1000 % 60,
+		this->time / 1000 / 60, this->time / 1000 % 60, this->time % 1000,
 		world.wave, world.ttWave * 50 / 1000 / 60, world.ttWave * 50 / 1000 % 60, world.ttWave * 50 % 1000,
 		score,
 		this->time / 50, world.bgLen + world.fgLen, n);

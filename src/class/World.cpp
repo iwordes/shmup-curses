@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 12:28:09 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 13:15:33 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,26 @@ void World::start()
 
 // =====================================================================================================================
 
+static inline bool onTick(World &w, Entity **&ent, uint64_t i)
+{
+	if (ent[i] == NULL)
+		return (false);
+	if (!w.bound(*ent[i]))
+	{
+		delete ent[i];
+		ent[i] = NULL;
+	}
+	return (ent[i] != NULL);
+}
+
 void World::tick()
 {
 	for (uint64_t i = 0; i < bgLen; i++)
-		if (bg[i] != NULL && bound(*bg[i]))
+		if (onTick(*this, bg, i))
 			bg[i]->onTick(*this);
 
 	for (uint64_t i = 0; i < fgLen; i++)
-		if (fg[i] != NULL && bound(*fg[i]) && !collide(*fg[i]))
+		if (onTick(*this, fg, i) && !collide(*fg[i]))
 			fg[i]->onTick(*this);
 
 	if (ttWave <= 0)
@@ -161,14 +173,12 @@ void World::draw()
 bool World::bound(Entity &e)
 {
 	return (
-		(
-			e.x < (int)w &&    // Lent < Rwin &&
-			e.x + e.w > 0 // Rent > Lwin
-		) &&
-		(
-			e.y < (int)h &&    // Tent < Bwin &&
-			e.y + e.h > 0 // Bent > Twin
-		)
+		e.x < (int)w && // Lent < Rwin &&
+		e.x + e.w > 0   // Rent > Lwin
+	) &&
+	(
+		e.y < (int)h && // Tent < Bwin &&
+		e.y + e.h > 0   // Bent > Twin
 	);
 }
 
