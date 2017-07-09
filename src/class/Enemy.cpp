@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 00:42:12 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 12:08:55 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 12:49:52 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void Enemy::onTick(World &world)
 {
 	if (this->ttMove <= 0)
 	{
-		x -= 1;
 		ttMove = maxTtMove;
+		x -= 1;
 	}
 
 	if (this->ttFire <= 0)
 	{
 		this->onFire(world);
-		ttFire = maxTtMove;
+		ttFire = maxTtFire;
 	}
 
 	ttFire--;

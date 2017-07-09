@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 12:48:28 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 12:52:53 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ void	Player::onTick(World &world)
 	int c;
 
 	werase(world.winHud);
-	mvwprintw(world.winHud, 0, 0, ": +%u -- %.2u:%.2u (%u) -- Wave %u -- T-%.2u:%.2u.%.3u",
+	mvwprintw(world.winHud, 0, 0, " %u lives -- %.2u:%.2u (%u) -- Wave %u -- T-%.2u:%.2u.%.3u -- Score: %u",
 		hp,
 		this->time / 1000 / 60, this->time / 1000 % 60, this->time / 50,
-		world.wave, world.ttWave * 50 / 1000 / 60, world.ttWave * 50 / 1000 % 60, world.ttWave * 50 % 1000);
+		world.wave, world.ttWave * 50 / 1000 / 60, world.ttWave * 50 / 1000 % 60, world.ttWave * 50 % 1000,
+		score);
 	wrefresh(world.winHud);
 
 	if ((c = getch()) != ERR)
