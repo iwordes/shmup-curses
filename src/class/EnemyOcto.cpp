@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 11:36:35 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 13:25:01 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 14:32:09 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ EnemyOcto::EnemyOcto(int16_t x, int16_t y): Enemy("B", x, y, 1, 1)
 	this->maxTtMove = 10;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
+	this->score = 500;
 
 	this->ff = 0;
 }

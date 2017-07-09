@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:37:31 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 02:03:40 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 14:06:05 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ public:
 	int8_t mtty;
 	int8_t ttx;
 	int8_t tty;
+
+	bool isBullet();
 
 	virtual void onTick(World &world);
 };

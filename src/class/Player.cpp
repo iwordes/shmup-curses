@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 13:40:12 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 14:51:08 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 	this->type = 0;
 
 	this->maxTtFire = 12;
-	this->maxTtMove = 2;
+	this->maxTtMove = 4;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
 	this->ttHit = 0;
-	this->hp = 3;
+	this->lvl = 0;
+	this->hp = 2;
+
+	this->scoreToLvl = 6000;
 }
 
 Player::Player(const Player &)
@@ -38,24 +41,20 @@ const Player &Player::operator=(const Player &)
 
 // =====================================================================================================================
 
+bool Player::isPlayer() { return true; }
+
 void	Player::onTick(World &world)
 {
 	int c;
 
-	// DEBUG
-	uint32_t n = 0;
-	for (uint32_t i = 0; i < world.fgLen; i++)
-		if (world.fg[i] != NULL)
-			n++;
-	// DEBUG
+	tryLevel();
 
 	werase(world.winHud);
-	mvwprintw(world.winHud, 0, 0, " %u lives -- %.2u:%.2u%.3u -- Wave %u -- T-%.2u:%.2u.%.3u -- Score: %u :: T%u, E%u (%u)",
-		hp,
-		this->time / 1000 / 60, this->time / 1000 % 60, this->time % 1000,
-		world.wave, world.ttWave * 50 / 1000 / 60, world.ttWave * 50 / 1000 % 60, world.ttWave * 50 % 1000,
+	mvwprintw(world.winHud, 0, 0, " Lv.%u -- HP: %u -- Fi: %u -- Mv: %u", lvl, hp + 1, maxTtFire, maxTtMove);
+	mvwprintw(world.winHud, 1, 0, " Score: %u -- Time: %.2u:%.2u -- Wave %u: T-%.2u:%.2u.%.3u",
 		score,
-		this->time / 50, world.bgLen + world.fgLen, n);
+		this->time / 1000 / 60, this->time / 1000 % 60,
+		world.wave + 1, world.ttWave * 50 / 1000 / 60, world.ttWave * 50 / 1000 % 60, world.ttWave * 50 % 1000);
 	wrefresh(world.winHud);
 
 	if ((c = getch()) != ERR)
@@ -94,9 +93,32 @@ void	Player::onTick(World &world)
 	this->score += 5;
 }
 
+void Player::tryLevel()
+{
+	if (score > scoreToLvl)
+	{
+		if (lvl % 3 == 0 && maxTtMove > 2)
+			maxTtMove--;
+		if (lvl & 1 && maxTtFire > 3)
+			maxTtFire--;
+		if (lvl & 2)
+			hp++;
+
+		lvl++;
+
+		scoreToLvl += 5000;
+		scoreToLvl += lvl * 1000;
+	}
+}
+
 void Player::onFire(World &world)
 {
-	world.addFg(new Projectile(type, "=", x + 1, y, 1));
+	world.addFg(new PlayerBullet("=", x + 1, y, 1, 0));
+	if (lvl >= 3)
+	{
+		world.addFg(new PlayerBullet("/", x + 1, y - 1, 1, -6));
+		world.addFg(new PlayerBullet("\\", x + 1, y + 1, 1, 6));
+	}
 }
 
 bool Player::onHit(World &, Entity &)

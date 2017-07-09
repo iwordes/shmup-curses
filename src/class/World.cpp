@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 13:15:33 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 13:51:55 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ World::World(uint32_t w, uint32_t h)
 	timeout(0);
 
 	winGame = subwin(term, h, w, 0, 0);
-	winHud = subwin(term, 1, w, h, 0);
+	winHud = subwin(term, 2, w, h, 0);
 }
 
 World::~World()

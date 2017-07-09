@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 14:34:36 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 02:04:46 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 14:05:34 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ const Projectile &Projectile::operator=(const Projectile &rhs)
 }
 
 // =====================================================================================================================
+
+bool Projectile::isBullet() { return true; }
 
 void Projectile::onTick(World &)
 {

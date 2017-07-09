@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:36:48 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 01:55:28 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 14:29:18 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,13 @@ public:
 	int16_t x;
 	int16_t y;
 
+	uint32_t score;
 	uint8_t type;
+
+
+	virtual bool isBullet();
+	virtual bool isEnemy();
+	virtual bool isPlayer();
 
 
 	virtual void onTick(World &world);

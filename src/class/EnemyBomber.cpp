@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 11:22:15 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 12:50:31 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 14:32:03 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ EnemyBomber::EnemyBomber(int16_t x, int16_t y): Enemy("<[", x, y, 2, 1)
 	this->maxTtMove = 8;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
+	this->score = 300;
 
 	this->payload = Projectile(type, "*", 0, 0, -20);
 }

@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:17:27 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 02:08:09 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 14:29:41 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,15 @@ const Entity &Entity::operator=(const Entity &rhs)
 	this->h = rhs.h;
 	this->x = rhs.x;
 	this->y = rhs.y;
+	this->score = 0;
 	return (*this);
 }
 
 // =====================================================================================================================
+
+bool Entity::isBullet() { return false; }
+bool Entity::isEnemy() { return false; }
+bool Entity::isPlayer() { return false; }
 
 void Entity::onTick(World &) {}
 bool Entity::onHit(World &, Entity &) { return true; }
