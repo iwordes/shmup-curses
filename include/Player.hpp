@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:40:58 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:11:55 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 20:54:51 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class Player: public Entity
 {
 public:
-	Player(uint16_t x = 0, uint16_t h = 0);
+	Player(uint16_t x = 0, uint16_t y = 0);
 	Player(const Player &copy);
 	~Player();
 
