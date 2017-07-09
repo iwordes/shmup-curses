@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Shuttlebug.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/07 20:39:17 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 15:51:45 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/09 13:31:07 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/09 15:51:30 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <World.hpp>
+#include <EnemyShuttlebug.hpp>
 
-int main()
+
+
+void EnemyShuttlebug::onTick(World &world)
 {
-	World world(80, 24);
-
-	world.start();
+	tt
 }
