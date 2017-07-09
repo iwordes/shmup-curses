@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 22:10:42 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:43:45 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ World::World(uint32_t w, uint32_t h)
 	noecho();
 	timeout(0);
 
-	winGame = newwin(24, 80, 0, 0);
-	// winHud = newwin(2, 80, 81, 81);
+	winGame = subwin(term, h, w, 0, 0);
+	winHud = subwin(term, 1, w, h, 0);
 }
 
 World::~World()
@@ -56,6 +56,7 @@ World::~World()
 	delete bg;
 
 	endwin();
+	delwin(winHud);
 	delwin(winGame);
 	// delscreen(term);
 }
@@ -137,8 +138,8 @@ void World::pause()
 
 void World::drawClip(const Entity &e)
 {
-	for (uint16_t y = 0; y < e.h; y++) if (e.y + y > 0 && e.y + y < (int)h)
-		for (uint16_t x = 0; x < e.w; x++) if (e.x + x > 0 && e.x + x < (int)w)
+	for (uint16_t y = 0; y < e.h; y++) if (e.y + y >= 0 && e.y + y < (int)h)
+		for (uint16_t x = 0; x < e.w; x++) if (e.x + x >= 0 && e.x + x < (int)w)
 			if (e.icon[y * e.w + x] != ' ')
 				mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x]);
 }

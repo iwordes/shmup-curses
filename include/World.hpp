@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 22:07:43 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:24:21 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ public:
 	uint32_t w;
 	uint32_t h;
 
-private:
-
 	WINDOW *term;
 	WINDOW *winGame;
-	// WINDOW *winHud;
+	WINDOW *winHud;
+
+private:
 
 	Entity **bg;
 	Entity **fg;

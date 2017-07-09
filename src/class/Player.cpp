@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 22:11:07 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:29:03 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,14 @@ void	Player::onTick(World &world)
 {
 	int c;
 
+
+	werase(world.winHud);
+	mvwprintw(world.winHud, 0, 10, ": ");
+	wrefresh(world.winHud);
+
 	if ((c = getch()) != ERR)
 	{
+		wprintw(world.winHud, "+");
 		if ((c == 'w' || c == 'a' || c == 's' || c == 'd') && ttMove <= 0)
 		{
 			ttMove = maxTtMove;
@@ -71,6 +77,7 @@ void	Player::onTick(World &world)
 
 	this->time += 50;
 	this->score += 5;
+
 }
 
 void Player::onFire(World &)
