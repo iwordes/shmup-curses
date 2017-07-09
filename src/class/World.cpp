@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 11:20:48 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 11:56:18 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,22 +209,21 @@ bool World::collide(Entity &e)
 					if (fg[f] == &e)
 						break;
 
-				// bool del1 = fg[i]->onHit(*this, *fg[f]);
-				// bool del2 = fg[f]->onHit(*this, *fg[i]);
+				bool del1 = fg[f]->onHit(*this, *fg[i]);
+				bool del2 = fg[i]->onHit(*this, *fg[f]);
 
-				// if (del1)
-				// {
-					delete fg[i];
-					fg[i] = NULL;
-				// }
-				// if (del2)
-				// {
+				if (del1)
+				{
 					delete fg[f];
 					fg[f] = NULL;
-				// }
+				}
+				if (del2)
+				{
+					delete fg[i];
+					fg[i] = NULL;
+				}
 
-				// return (del1);
-				return true;
+				return (del1);
 			}
 	return (false);
 }
