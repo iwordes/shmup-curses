@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 12:13:29 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 12:57:48 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ public:
 	uint32_t ttWave;
 	uint32_t wave;
 
-private:
-
 	Entity **bg;
 	Entity **fg;
 	uint32_t fgLen;
 	uint32_t bgLen;
+
+private:
 
 	uint32_t maxTtWave;
 	uint32_t minTtWave;
