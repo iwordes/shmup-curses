@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:40:58 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:54:51 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:58:32 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdint.h>
 # include "Entity.hpp"
+# include "Projectile.hpp"
 # include "World.hpp"
 
 class Player: public Entity
@@ -33,7 +34,6 @@ public:
 	uint8_t maxTtMove;
 
 	int8_t hp;
-	int8_t maxHp;
 
 	uint32_t score;
 	uint32_t time;

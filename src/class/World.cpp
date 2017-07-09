@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 22:43:45 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 23:23:06 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ void World::start()
 			usleep(50000 - (t2 - t1));
 	}
 
+	mvwprintw(winHud, 0, 0, ":: You lose! ::");
+	wrefresh(winHud);
+	while (1);
 	// Game over ...
 }
 
@@ -195,16 +198,17 @@ bool World::collide(Entity &e)
 	if (!e.isSolid)
 		return (false);
 	for (uint32_t i = 0; i < fgLen; i++)
-		if (doesCollide(e, *fg[i]))
-		{
-			// Find Entity e as fg[f]...
+		if (fg[i] != NULL)
+			if (doesCollide(e, *fg[i]))
+			{
+				// Find Entity e as fg[f]...
 
-			// delete fg[f];
-			// delete fg[i];
-			// fg[f] = NULL;
-			// fg[i] = NULL;
-			return (true);
-		}
+				// delete fg[f];
+				// delete fg[i];
+				// fg[f] = NULL;
+				// fg[i] = NULL;
+				return (true);
+			}
 	return (false);
 }
 

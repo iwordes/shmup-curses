@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 22:49:20 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 23:24:14 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ Player::Player(uint16_t x, uint16_t y)
 	this->icon = ">";
 	this->w = 1;
 	this->h = 1;
+	this->isSolid = true;
+	this->isHostile = false;
 
 	this->x = x;
 	this->y = y;
 
+	this->hp = 3;
+
 	this->maxTtFire = 10;
-	this->maxTtMove = 5;
+	this->maxTtMove = 3;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
 }
@@ -41,11 +45,10 @@ void	Player::onTick(World &world)
 
 
 	werase(world.winHud);
-	mvwprintw(world.winHud, 0, 0, ": %hhu", ttMove);
+	mvwprintw(world.winHud, 0, 0, ": +%u -- %.2u:%.2u (%u)", hp, this->time / 1000 / 60, this->time / 1000 % 60, this->time / 50);
 
 	if ((c = getch()) != ERR)
 	{
-		wprintw(world.winHud, "+%c", (char)c);
 		if ((c == 'w' || c == 'a' || c == 's' || c == 'd') && ttMove <= 0)
 		{
 			ttMove = maxTtMove;
@@ -81,11 +84,9 @@ void	Player::onTick(World &world)
 	wrefresh(world.winHud);
 }
 
-void Player::onFire(World &)
+void Player::onFire(World &world)
 {
-	/*world.addFg(new Projectile(
-		// ...
-	));*/
+	world.addFg(new Projectile("=", x + 1, y, 2, false));
 }
 
 /*

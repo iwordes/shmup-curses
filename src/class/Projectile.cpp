@@ -6,17 +6,22 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 14:34:36 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:00:16 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 23:18:50 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Projectile.hpp>
 
-void Projectile::Projectile(const char *icon, int8_t tx, int8_t ty)
+Projectile::Projectile(const char *icon, int16_t x, int16_t y, int8_t tx, int8_t ty, bool isHostile)
 {
 	this->icon = icon;
 	this->w = 1;
 	this->h = 1;
+	this->x = x;
+	this->y = y;
+
+	this->isSolid = true;
+	this->isHostile = isHostile;
 
 	this->mttx = tx;
 	this->mtty = ty;
@@ -24,12 +29,12 @@ void Projectile::Projectile(const char *icon, int8_t tx, int8_t ty)
 	this->tty = ty;
 }
 
-void Projectile::Projectile(const Projectile &copy)
+Projectile::Projectile(const Projectile &copy)
 {
 	*this = copy;
 }
 
-void Projectile::~Projectile() {}
+Projectile::~Projectile() {}
 
 const Projectile &Projectile::operator=(const Projectile &rhs)
 {
@@ -46,14 +51,15 @@ const Projectile &Projectile::operator=(const Projectile &rhs)
 	this->mtty = rhs.mtty;
 	this->ttx = rhs.ttx;
 	this->tty = rhs.tty;
+	return (*this);
 }
 
 // =====================================================================================================================
 
-virtual void Projection::onTick(World &world)
+void Projectile::onTick(World &)
 {
 	int8_t dx = (mttx > 0) ? 1 : -1;
-	int8_t dy = (mtty > 0) ? 1 : -1
+	int8_t dy = (mtty > 0) ? 1 : -1;
 
 	if (ttx == mttx)
 	{
