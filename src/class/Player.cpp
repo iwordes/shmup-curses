@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 23:38:20 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 00:01:30 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ Player::Player(uint16_t x, uint16_t y)
 
 	this->hp = 3;
 
-	this->maxTtFire = 10;
-	this->maxTtMove = 3;
+	this->maxTtFire = 16;
+	this->maxTtMove = 2;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
 }
@@ -85,7 +85,7 @@ void	Player::onTick(World &world)
 
 void Player::onFire(World &world)
 {
-	world.addFg(new Projectile("=", x + 1, y, 2, 4, false));
+	world.addFg(new Projectile("=", x + 1, y, 2, 0, false));
 }
 
 /*

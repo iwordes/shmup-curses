@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 23:51:58 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 23:58:35 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,7 @@ static inline void addEntity(Entity **&arr, uint32_t &l, Entity *ent)
 		tmp[i] = arr[i];
 	for (uint32_t i = l; i < l * 2; i++)
 		tmp[i] = NULL;
-	arr[l] = ent;
+	tmp[l] = ent;
 
 	delete arr;
 	arr = tmp;
