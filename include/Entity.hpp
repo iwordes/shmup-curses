@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:36:48 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:23:53 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:05:03 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ class Entity
 public:
 	Entity();
 	Entity(const Entity &copy);
-	virtual ~Entity() = 0;
+	virtual ~Entity();
 
 	const Entity &operator=(const Entity &rhs);
+
 
 	const char *icon;
 	uint16_t w;
@@ -38,7 +39,8 @@ public:
 	bool isSolid;
 	bool isHostile;
 
-	virtual void onTick(World &world) = 0;
+
+	virtual void onTick(World &world);
 
 	// Return false to cancel death, e.g. if hitpoints are left.
 	// virtual bool onHit(World &world, Entity &by);

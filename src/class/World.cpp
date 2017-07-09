@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:50:32 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:10:42 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ void World::start()
 	uint64_t t1;
 	uint64_t t2;
 
-	player = new Player(0, 0);
-	fg[0] = player;
-
+	fg[0] = new Player();
 	while (fg[0] != NULL)
 	{
 		t1 = utime();
@@ -119,11 +117,6 @@ void World::tick()
 		spawn();
 	}
 
-	// --------------------------------------------
-
-	player->time += 50;
-	player->score += 5;
-
 	draw();
 }
 
@@ -154,9 +147,11 @@ void World::draw()
 {
 	werase(winGame);
 	for (uint32_t i = 0; i < bgLen; i++)
-		drawClip(*bg[i]);
+		if (bg[i] != NULL)
+			drawClip(*bg[i]);
 	for (uint32_t i = 0; i < fgLen; i++)
-		drawClip(*fg[i]);
+		if (fg[i] != NULL)
+			drawClip(*fg[i]);
 	wrefresh(winGame);
 }
 

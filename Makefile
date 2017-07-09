@@ -1,5 +1,5 @@
 CC ?= clang++
-CF += -Wall -Wextra -Werror -std=c++98 -I include -lncurses
+CF += -Wall -Wextra -Werror -std=c++98 -I include -lncurses -lc++
 
 SRC += Entity.cpp Player.cpp World.cpp
 SRC := $(addprefix class/,$(SRC))

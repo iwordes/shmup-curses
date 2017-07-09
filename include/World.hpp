@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:34:21 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:07:43 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ private:
 	WINDOW *term;
 	WINDOW *winGame;
 	// WINDOW *winHud;
-
-	Player *player;
 
 	Entity **bg;
 	Entity **fg;

@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:26:04 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:11:07 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ Player::Player(uint16_t x, uint16_t y)
 
 	this->x = x;
 	this->y = y;
+
+	this->maxTtFire = 10;
+	this->maxTtMove = 10;
+	this->ttFire = maxTtFire;
+	this->ttMove = maxTtMove;
 }
 
 Player::Player(const Player &)
@@ -36,7 +41,7 @@ void	Player::onTick(World &world)
 
 	if ((c = getch()) != ERR)
 	{
-		if ((c == 'w' || c == 'a' || c == 's' || c == 'd') && ttMove == 0)
+		if ((c == 'w' || c == 'a' || c == 's' || c == 'd') && ttMove <= 0)
 		{
 			ttMove = maxTtMove;
 			if (c == 'w' && y > 0)
@@ -59,8 +64,13 @@ void	Player::onTick(World &world)
 		ttFire = maxTtFire;
 	}
 
-	ttMove--;
-	ttFire--;
+	if (ttMove > 0)
+		ttMove--;
+	if (ttFire > 0)
+		ttFire--;
+
+	this->time += 50;
+	this->score += 5;
 }
 
 void Player::onFire(World &)
@@ -69,3 +79,10 @@ void Player::onFire(World &)
 		// ...
 	));*/
 }
+
+/*
+bool Player::onHit(World &, Entity &)
+{
+	return (--hp <= 0);
+}
+*/
