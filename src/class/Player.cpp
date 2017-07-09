@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 23:24:14 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 23:24:58 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	Player::onTick(World &world)
 
 void Player::onFire(World &world)
 {
-	world.addFg(new Projectile("=", x + 1, y, 2, false));
+	world.addBg(new Projectile("=", x + 1, y, 2, false));
 }
 
 /*

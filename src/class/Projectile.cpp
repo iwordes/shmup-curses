@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 14:34:36 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 23:18:50 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 23:27:37 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ Projectile::Projectile(const char *icon, int16_t x, int16_t y, int8_t tx, int8_t
 
 	this->mttx = tx;
 	this->mtty = ty;
-	this->ttx = tx;
-	this->tty = ty;
+	this->ttx = 0;
+	this->tty = 0;
 }
 
 Projectile::Projectile(const Projectile &copy)
@@ -58,15 +58,20 @@ const Projectile &Projectile::operator=(const Projectile &rhs)
 
 void Projectile::onTick(World &)
 {
-	int8_t dx = (mttx > 0) ? 1 : -1;
-	int8_t dy = (mtty > 0) ? 1 : -1;
+	int8_t dx = 0;
+	int8_t dy = 0;
 
-	if (ttx == mttx)
+	if (mttx != 0)
+		dx = (mttx > 0) ? 1 : -1;
+	if (mtty != 0)
+		dy = (mtty > 0) ? 1 : -1;
+
+	if (ttx == 0)
 	{
 		ttx = mttx;
 		x += dx;
 	}
-	if (tty == mtty)
+	if (tty == 0)
 	{
 		tty = mtty;
 		y += dy;
