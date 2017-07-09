@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:40:58 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/07 20:52:28 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 14:27:49 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,28 @@
 
 class Player: Entity
 {
-	// ...
+	Player(uint16_t x = 0, uint16_t h = 0);
+	Player(const Player &copy);
+	~Player();
+
+	const Player &operator=(const Player &rhs);
+
+
+	uint8_t ttFire;
+	uint8_t maxTtFire;
+
+	uint8_t ttMove;
+	uint8_t maxTtMove;
+
+	int8_t hp;
+	int8_t maxHp;
+
+	uint32_t score;
+	uint32_t time;
+
+	void onTick(World &world);
+	void onMove(World &world);
+	void onFire(World &world);
 };
 
 #endif

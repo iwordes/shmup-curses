@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Entity.hpp                                         :+:      :+:    :+:   */
+/*   Projectile.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/07 20:36:48 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:00:28 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/08 11:37:31 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/08 19:53:48 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENTITY_HPP
-# define ENTITY_HPP
+#ifndef PROJECTILE_HPP
+# define PROJECTILE_HPP
 
-class Entity
+class Projectile: Entity
 {
 public:
-	virtual Entity();
-	virtual Entity(const Entity &copy);
-	virtual ~Entity() = 0;
+	Projectile(const char *icon = "-", int16_t x = 0, int16_t y = 0, int8_t tx = -10, int8_t ty = 0);
+	Projectile(const Projectile &copy);
+	virtual ~Projectile();
 
-	const char *icon;
-	uint16_t w;
-	uint16_t h;
+	const Projectile &operator=(const Projectile &rhs);
 
-	int16_t x;
-	int16_t y;
+	int8_t mttx;
+	int8_t mtty;
+	int8_t ttx;
+	int8_t tty;
 
-	// uint8_t type;
-
-	bool isSolid;
-	bool isHostile;
-
-	virtual void onTick(World &world) = 0;
-
-	// Return false to cancel death, e.g. if hitpoints are left.
-	// virtual bool onHit(World &world, Entity &by);
+	virtual void onTick(World &world);
+	// virtual void onHit(World &world, Entity &by);
 };
 
 #endif

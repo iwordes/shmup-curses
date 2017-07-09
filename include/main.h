@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tick.cpp                                           :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/07 20:38:51 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/07 20:39:13 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/08 16:00:57 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/08 19:36:57 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <main.h>
+#ifndef MAIN_H
+# define MAIN_H
 
-void tick(GameState &state)
-{
-	// ...
-}
+# include "World.hpp"
+
+# include "Entity.hpp"
+# include "Player.hpp"
+// # include "Enemy.hpp"
+// # include "Projectile.hpp"
+
+#endif
