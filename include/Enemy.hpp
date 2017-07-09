@@ -6,20 +6,28 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:40:58 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 19:18:03 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 00:55:52 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENEMY_HPP
 # define ENEMY_HPP
 
-class Enemy: Entity
+# include "Entity.hpp"
+# include "Projectile.hpp"
+# include "World.hpp"
+
+class Enemy: public Entity
 {
-	Enemy(char *icon = "<", uint16_t w = 1, uint16_t h = 1, uint16_t);
+public:
+	Enemy(const char *icon = "<", int16_t x = 0, int16_t y = 0, uint16_t w = 1, uint16_t h = 1);
+	Enemy(const Enemy &copy);
 	~Enemy();
 
-	uint16_t ttf;
-	uint16_t maxTtf;
+	const Enemy &operator=(const Enemy &rhs);
+
+	uint16_t ttFire;
+	uint16_t maxTtFire;
 
 	uint16_t ttMove;
 	uint16_t maxTtMove;

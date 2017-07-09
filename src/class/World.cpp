@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 23:58:35 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 01:15:56 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ World::World(uint32_t w, uint32_t h)
 
 	// this->clock = 0;
 
-	this->maxTtSpawn = 60;
+	this->maxTtSpawn = 120;
 	this->minTtSpawn = 6;
-	this->ttSpawn = maxTtSpawn;
+	this->ttSpawn = 60;
 
 	// -----------------------------------
 
@@ -85,7 +85,7 @@ void World::start()
 	uint64_t t1;
 	uint64_t t2;
 
-	fg[0] = new Player();
+	fg[0] = new Player(0, h / 2);
 	while (fg[0] != NULL)
 	{
 		t1 = utime();
@@ -95,10 +95,9 @@ void World::start()
 			usleep(50000 - (t2 - t1));
 	}
 
-	mvwprintw(winHud, 0, 0, ":: You lose! ::");
+	mvwprintw(winHud, 0, 0, ":: You lose! ::                   ");
 	wrefresh(winHud);
-	while (1);
-	// Game over ...
+	pause();
 }
 
 // =====================================================================================================================
@@ -113,7 +112,6 @@ void World::tick()
 		if (fg[i] != NULL && bound(*fg[i]) && (!collide(*fg[i])/* || fg[i]->isImmortal */))
 			fg[i]->onTick(*this);
 
-	/*
 	if (ttSpawn <= 0)
 	{
 		ttSpawn = maxTtSpawn;
@@ -121,15 +119,17 @@ void World::tick()
 			maxTtSpawn -= 3;
 		spawn();
 	}
-	*/
+	ttSpawn--;
 
 	draw();
 }
 
+static std::random_device rd;
+static std::mt19937 rng(rd());
+
 void World::spawn()
 {
-	// TODO
-	// ...
+	addFg(new Enemy("<", w - 3, rng() % h));
 }
 
 void World::pause()
@@ -203,12 +203,17 @@ bool World::collide(Entity &e)
 		if (fg[i] != NULL)
 			if (doesCollide(e, *fg[i]))
 			{
-				// Find Entity e as fg[f]...
+				uint32_t f = 0;
 
-				// delete fg[f];
-				// delete fg[i];
-				// fg[f] = NULL;
-				// fg[i] = NULL;
+				for (; f < fgLen; f++)
+					if (fg[f] == &e)
+						break;
+
+				delete fg[f];
+				delete fg[i];
+				fg[f] = NULL;
+				fg[i] = NULL;
+
 				return (true);
 			}
 	return (false);
