@@ -2,6 +2,8 @@ CC := clang++
 CF += -Wall -Wextra -Werror -std=c++98 -I include -lncurses
 
 SRC += Enemy.cpp Entity.cpp Player.cpp Projectile.cpp World.cpp
+SRC += EnemyBomber.cpp EnemyOcto.cpp
+SRC += World/spawn.cpp
 SRC := $(addprefix class/,$(SRC))
 SRC += main.cpp
 SRC := $(addprefix src/,$(SRC))

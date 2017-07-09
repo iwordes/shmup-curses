@@ -6,13 +6,14 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:40:58 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 01:23:27 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 12:13:32 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENEMY_HPP
 # define ENEMY_HPP
 
+# include <random>
 # include "Entity.hpp"
 # include "Projectile.hpp"
 # include "World.hpp"
@@ -35,6 +36,7 @@ public:
 	uint16_t score;
 
 	virtual void onTick(World &world);
+	virtual void onFire(World &world);
 };
 
 #endif

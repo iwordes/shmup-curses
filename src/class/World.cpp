@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 11:56:18 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 12:28:09 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ World::World(uint32_t w, uint32_t h)
 	// this->clock = 0;
 
 	this->maxTtWave = 120;
-	this->minTtWave = 6;
+	this->minTtWave = 12;
 	this->ttWave = 60;
 	this->wave = 0;
 
@@ -125,14 +125,6 @@ void World::tick()
 	ttWave--;
 
 	draw();
-}
-
-static std::random_device rd;
-static std::mt19937 rng(rd());
-
-void World::spawn()
-{
-	addFg(new Enemy("<", w - 3, rng() % h));
 }
 
 void World::pause()

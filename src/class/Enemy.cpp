@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 00:42:12 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 02:20:04 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 12:08:55 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ const Enemy &Enemy::operator=(const Enemy &rhs)
 
 // =====================================================================================================================
 
-void Enemy::onTick(World &)
+void Enemy::onTick(World &world)
 {
 	if (this->ttMove <= 0)
 	{
@@ -53,10 +53,12 @@ void Enemy::onTick(World &)
 
 	if (this->ttFire <= 0)
 	{
-		//world.addFg(new Projectile(type, "c", x - 1, y, -4));
+		this->onFire(world);
 		ttFire = maxTtMove;
 	}
 
 	ttFire--;
 	ttMove--;
 }
+
+void Enemy::onFire(World &) {}

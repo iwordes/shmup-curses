@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 02:23:43 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 12:48:28 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	Player::onTick(World &world)
 		ttMove--;
 	if (ttFire > 0)
 		ttFire--;
+	if (ttHit > 0)
+		ttHit--;
 
 	this->time += 50;
 	this->score += 5;
@@ -91,6 +93,7 @@ void Player::onFire(World &world)
 bool Player::onHit(World &, Entity &)
 {
 	if (ttHit > 0)
-		return (false);
-	return (--hp <= 0);
+		return false;
+	ttHit = 10;
+	return (hp-- <= 0);
 }

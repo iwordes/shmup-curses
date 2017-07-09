@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 02:09:31 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 12:13:29 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 # define WORLD_HPP
 
 # include <curses.h>
-# include <random>
 # include <stdint.h>
 # include <sys/time.h>
 # include <unistd.h>
 # include "Entity.hpp"
-# include "Enemy.hpp"
 
 class Player;
 
