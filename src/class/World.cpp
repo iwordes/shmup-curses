@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 02:30:20 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 11:20:48 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void World::tick()
 			bg[i]->onTick(*this);
 
 	for (uint64_t i = 0; i < fgLen; i++)
-		if (fg[i] != NULL && bound(*fg[i]) && (!collide(*fg[i])/* || fg[i]->isImmortal */))
+		if (fg[i] != NULL && bound(*fg[i]) && !collide(*fg[i]))
 			fg[i]->onTick(*this);
 
 	if (ttWave <= 0)
