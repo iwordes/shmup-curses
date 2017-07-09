@@ -6,21 +6,25 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:40:58 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 14:27:49 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 20:11:55 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_HPP
 # define PLAYER_HPP
 
-class Player: Entity
+# include <stdint.h>
+# include "Entity.hpp"
+# include "World.hpp"
+
+class Player: public Entity
 {
+public:
 	Player(uint16_t x = 0, uint16_t h = 0);
 	Player(const Player &copy);
 	~Player();
 
 	const Player &operator=(const Player &rhs);
-
 
 	uint8_t ttFire;
 	uint8_t maxTtFire;

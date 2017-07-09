@@ -6,19 +6,25 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:36:48 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 20:00:28 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 20:23:53 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENTITY_HPP
 # define ENTITY_HPP
 
+# include <stdint.h>
+
+class World;
+
 class Entity
 {
 public:
-	virtual Entity();
-	virtual Entity(const Entity &copy);
+	Entity();
+	Entity(const Entity &copy);
 	virtual ~Entity() = 0;
+
+	const Entity &operator=(const Entity &rhs);
 
 	const char *icon;
 	uint16_t w;

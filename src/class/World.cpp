@@ -6,13 +6,14 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 19:46:58 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 20:49:15 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <World.hpp>
+#include <Player.hpp>
 
-World::World(uint32_t w, uint32_t w)
+World::World(uint32_t w, uint32_t h)
 {
 	this->w = w;
 	this->h = h;
@@ -22,10 +23,13 @@ World::World(uint32_t w, uint32_t w)
 	this->bgLen = 8;
 	this->fgLen = 8;
 
-	// this->clock = 0;
+	for (uint32_t i = 0; i < 8; i++)
+	{
+		bg[i] = NULL;
+		fg[i] = NULL;
+	}
 
-	// this->maxTtCycle = 400;
-	// this->ttCycle = maxTtCycle + 60;
+	// this->clock = 0;
 
 	this->maxTtSpawn = 60;
 	this->minTtSpawn = 6;
@@ -39,30 +43,29 @@ World::World(uint32_t w, uint32_t w)
 	timeout(0);
 
 	winGame = newwin(24, 80, 0, 0);
-	//winHud = newwin(2, 80, 81, 81);
+	// winHud = newwin(2, 80, 81, 81);
 }
 
 World::~World()
 {
-	for (int i = 0; i < fgLen; i++)
+	for (uint32_t i = 0; i < fgLen; i++)
 		delete fg[i];
-	for (int i = 0; i < bgLen; i++)
+	for (uint32_t i = 0; i < bgLen; i++)
 		delete bg[i];
 	delete fg;
 	delete bg;
 
 	endwin();
 	delwin(winGame);
-	delscreen(term);
+	// delscreen(term);
 }
-
 
 World::World(const World &)
 {
 	throw "Don't create more than one world.";
 }
 
-const World &operator=(const World &)
+const World &World::operator=(const World &)
 {
 	throw "Don't create more than one world.";
 }
@@ -96,11 +99,6 @@ void World::start()
 	// Game over ...
 }
 
-void World::addEntity(Entity *)
-{
-	// ...
-}
-
 // =====================================================================================================================
 
 void World::tick()
@@ -113,19 +111,11 @@ void World::tick()
 		if (fg[i] != NULL && bound(*fg[i]) && (!collide(*fg[i])/* || fg[i]->isImmortal */))
 			fg[i]->onTick(*this);
 
-	/*
-	if (ttCycle == 0)
-	{
-		if (maxTtSpawn > minTtSpawn)
-			maxTtSpawn -= 3;
-		maxTtCycle -= 20;
-		ttCycle = maxTtCycle;
-	}
-	*/
-
 	if (ttSpawn <= 0)
 	{
 		ttSpawn = maxTtSpawn;
+		if (maxTtSpawn > minTtSpawn)
+			maxTtSpawn -= 3;
 		spawn();
 	}
 
@@ -154,8 +144,8 @@ void World::pause()
 
 void World::drawClip(const Entity &e)
 {
-	for (uint16_t y = 0; y < e.h; y++) if (e.y + y > 0 && e.y + y < h)
-		for (uint16_t x = 0; x < e.w; x++) if (e.x + x > 0 && e.x + x < w)
+	for (uint16_t y = 0; y < e.h; y++) if (e.y + y > 0 && e.y + y < (int)h)
+		for (uint16_t x = 0; x < e.w; x++) if (e.x + x > 0 && e.x + x < (int)w)
 			if (e.icon[y * e.w + x] != ' ')
 				mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x]);
 }
@@ -176,14 +166,14 @@ bool World::bound(Entity &e)
 {
 	return (
 		(
-			e.x < w &&    // Lent < Rwin &&
+			e.x < (int)w &&    // Lent < Rwin &&
 			e.x + e.w > 0 // Rent > Lwin
 		) &&
 		(
-			e.y < h &&    // Tent < Bwin &&
+			e.y < (int)h &&    // Tent < Bwin &&
 			e.y + e.h > 0 // Bent > Twin
 		)
-	)
+	);
 }
 
 static inline bool doesCollide(const Entity &e1, const Entity &e2)
@@ -224,7 +214,7 @@ bool World::collide(Entity &e)
 
 // =====================================================================================================================
 
-static inline void addEntity(Entity &**arr, uint32_t &l, Entity *ent)
+static inline void addEntity(Entity **&arr, uint32_t &l, Entity *ent)
 {
 	for (uint32_t i = 0; i < l; i++)
 		if (arr[i] == NULL)

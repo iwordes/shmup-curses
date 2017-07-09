@@ -6,12 +6,20 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 19:46:41 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 20:34:21 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WORLD_HPP
 # define WORLD_HPP
+
+# include <curses.h>
+# include <stdint.h>
+# include <sys/time.h>
+# include <unistd.h>
+# include "Entity.hpp"
+
+class Player;
 
 class World
 {
@@ -24,9 +32,10 @@ public:
 
 	// =================================================================================================================
 
-private:
 	uint32_t w;
 	uint32_t h;
+
+private:
 
 	WINDOW *term;
 	WINDOW *winGame;
@@ -53,13 +62,16 @@ private:
 public:
 	void start();
 
+	void addBg(Entity *entity);
+	void addFg(Entity *entity);
+
 private:
 	void tick();
 	void pause();
 	void spawn();
 
 	void draw();
-	void drawClip(Entity &entity);
+	void drawClip(const Entity &entity);
 
 	bool bound(Entity &entity);
 	bool collide(Entity &entity);

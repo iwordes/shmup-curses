@@ -6,21 +6,23 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:17:27 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 19:56:16 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 20:23:20 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Entity.hpp>
+#include <World.hpp>
 
-virtual Entity::Entity() {}
-virtual Entity::~Entity() {}
+Entity::Entity() {}
 
-virtual Entity::Entity(const Entity &)
+Entity::Entity(const Entity &)
 {
 	throw "Don't do that.";
 }
 
-virtual const Entity &Entity::operator=(const Entity &)
+Entity::~Entity() {}
+
+const Entity &Entity::operator=(const Entity &)
 {
 	throw "Don't do that.";
 }

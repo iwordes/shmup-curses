@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 18:17:57 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 20:26:04 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ Player::Player(uint16_t x, uint16_t y)
 	this->y = y;
 }
 
-Player::~Player()
+Player::Player(const Player &)
 {
-	// ...
+	throw "Don't do that.";
 }
+
+Player::~Player() {}
 
 
 void	Player::onTick(World &world)
@@ -41,9 +43,9 @@ void	Player::onTick(World &world)
 				y -= 1;
 			else if (c == 'a' && x > 0)
 				x -= 1;
-			else if (c == 's' && y < world.h - 1)
+			else if (c == 's' && y < (int)world.h - 1)
 				y += 1;
-			else if (c == 'd' && y < world.w - 1)
+			else if (c == 'd' && y < (int)world.w - 1)
 				x += 1;
 			else
 				ttMove = 0;
@@ -53,7 +55,7 @@ void	Player::onTick(World &world)
 
 	if (ttFire == 0)
 	{
-		this->onFire();
+		this->onFire(world);
 		ttFire = maxTtFire;
 	}
 
@@ -61,9 +63,9 @@ void	Player::onTick(World &world)
 	ttFire--;
 }
 
-void Player::onFire(World &world)
+void Player::onFire(World &)
 {
-	/*world.addEntity(new Projectile(
+	/*world.addFg(new Projectile(
 		// ...
 	));*/
 }

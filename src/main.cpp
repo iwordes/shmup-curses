@@ -6,15 +6,17 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:39:17 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 19:51:23 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 20:48:04 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <main.h>
 
+#include <iostream>
+
 int main()
 {
 	World world(80, 24);
 
-	world.start();
+	// world.start();
 }

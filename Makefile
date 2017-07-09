@@ -1,7 +1,9 @@
-CC = clang++
-CF = -Wall -Wextra -Werror -std=c++98
+CC ?= clang++
+CF += -Wall -Wextra -Werror -std=c++98 -I include -lncurses
 
-SRC = ...
+SRC += Entity.cpp Player.cpp World.cpp
+SRC := $(addprefix class/,$(SRC))
+SRC += main.cpp
 SRC := $(addprefix src/,$(SRC))
 
 .PHONY: all
