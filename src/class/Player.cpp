@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/08 22:29:03 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/08 22:49:20 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Player::Player(uint16_t x, uint16_t y)
 	this->y = y;
 
 	this->maxTtFire = 10;
-	this->maxTtMove = 10;
+	this->maxTtMove = 5;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
 }
@@ -41,12 +41,11 @@ void	Player::onTick(World &world)
 
 
 	werase(world.winHud);
-	mvwprintw(world.winHud, 0, 10, ": ");
-	wrefresh(world.winHud);
+	mvwprintw(world.winHud, 0, 0, ": %hhu", ttMove);
 
 	if ((c = getch()) != ERR)
 	{
-		wprintw(world.winHud, "+");
+		wprintw(world.winHud, "+%c", (char)c);
 		if ((c == 'w' || c == 'a' || c == 's' || c == 'd') && ttMove <= 0)
 		{
 			ttMove = maxTtMove;
@@ -56,11 +55,12 @@ void	Player::onTick(World &world)
 				x -= 1;
 			else if (c == 's' && y < (int)world.h - 1)
 				y += 1;
-			else if (c == 'd' && y < (int)world.w - 1)
+			else if (c == 'd' && x < (int)world.w - 1)
 				x += 1;
 			else
 				ttMove = 0;
 		}
+
 	}
 	while (getch() != ERR);
 
@@ -78,6 +78,7 @@ void	Player::onTick(World &world)
 	this->time += 50;
 	this->score += 5;
 
+	wrefresh(world.winHud);
 }
 
 void Player::onFire(World &)
