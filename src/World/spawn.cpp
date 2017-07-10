@@ -6,13 +6,14 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 12:11:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 17:05:15 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 17:41:02 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <World.hpp>
 #include <Enemy.hpp>
 
+#include <EnemyShooter.hpp>
 #include <EnemyKamikaze.hpp>
 
 #include <EnemyBomber.hpp>
@@ -31,24 +32,24 @@ static bool chance(int n, int max)
 
 void World::spawn()
 {
-	if (wave > 20 && chance(1, 10))
+	if (wave >= 20 && chance(1, 10))
 		;// ...
-	else if (wave > 20 && chance(1, 10))
+	else if (wave >= 20 && chance(1, 10))
 		;// ...
-	else if (wave > 15 && chance(1, 8))
+	else if (wave >= 15 && chance(1, 8))
 		;// ...
-	else if (wave > 15 && chance(1, 8))
+	else if (wave >= 15 && chance(1, 8))
 		;// ...
-	else if (wave > 10 && chance(1, 7))
+	else if (wave >= 10 && chance(1, 6))
 		ADD(EnemyOcto);
-	else if (wave > 10 && chance(1, 6))
+	else if (wave >= 10 && chance(1, 5))
+		ADD(EnemyShooter);
+	else if (wave >= 5 && chance(1, 3))
 		;// ...
-	else if (wave > 5 && chance(1, 4))
-		;// ...
-	else if (wave > 5 && chance(1, 4))
+	else if (wave >= 5 && chance(1, 3))
 		ADD(EnemyBomber);
 	else if (chance(1, 3))
-		;// ... ADD(EnemyShooter);
+		ADD(EnemyShooter);
 	else
 		ADD(EnemyKamikaze);
 }
