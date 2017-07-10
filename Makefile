@@ -1,7 +1,7 @@
 CC := clang++
 CF += -Wall -Wextra -Werror -std=c++98 -I include -lncurses
 
-SRC1 += Bomber.cpp Octo.cpp # Shuttlebug.cpp
+SRC1 += Bomber.cpp Octo.cpp Kamikaze.cpp # Shuttlebug.cpp
 SRC1 := $(addprefix Enemy/,$(SRC1))
 
 SRC2 += PlayerBullet.cpp
@@ -12,7 +12,6 @@ SRC3 := $(addprefix World/,$(SRC3))
 
 SRC += Enemy.cpp Player.cpp Projectile.cpp #Scenery.cpp
 SRC += Entity.cpp World.cpp
-SRC += LinearMove.cpp
 SRC += main.cpp
 SRC := $(addprefix src/,$(SRC) $(SRC1) $(SRC2) $(SRC3))
 

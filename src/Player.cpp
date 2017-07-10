@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 16:18:20 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 17:12:46 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 {
 	this->type = 0;
 
-	this->maxTtFire = 12;
+	this->maxTtFire = 20;
 	this->maxTtMove = 4;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;

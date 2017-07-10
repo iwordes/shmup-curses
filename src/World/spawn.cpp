@@ -6,13 +6,17 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 12:11:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 16:50:22 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 17:05:15 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <World.hpp>
 #include <Enemy.hpp>
+
+#include <EnemyKamikaze.hpp>
+
 #include <EnemyBomber.hpp>
+
 #include <EnemyOcto.hpp>
 
 static std::random_device rd;
@@ -20,7 +24,7 @@ static std::mt19937 rng(rd());
 
 static bool chance(int n, int max)
 {
-	return (rng() % max < n);
+	return (rng() % max < (unsigned)n);
 }
 
 #define ADD(T) addFg(new T(w - 1, rng() % h))

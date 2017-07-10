@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 16:41:01 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 16:59:57 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ public:
 	uint32_t maxTtSpawn;
 	uint32_t minTtSpawn;
 	uint32_t ttSpawn;
-
 	uint32_t ttScene;
-	uint32_t ttSpawn;
+
 	uint32_t ttWave;
 	uint32_t wave;
 
@@ -52,11 +51,6 @@ public:
 	Entity **fg;
 	uint32_t fgLen;
 	uint32_t bgLen;
-
-private:
-
-	uint32_t maxTtWave;
-	uint32_t minTtWave;
 
 	// =================================================================================================================
 
