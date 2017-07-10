@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:02:03 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 22:09:38 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 22:49:36 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ public:
 
 	PlayerBOB &operator=(const PlayerBOB &);
 
+	uint8_t hp;
+
 	using BulletOfBullets::onTick;
 	using BulletOfBullets::onSplit;
-	using PlayerBullet::onHit;
+
+	bool onHit(World &world, Entity &by);
 };
 
 #endif

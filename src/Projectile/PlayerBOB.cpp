@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:00:14 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 22:15:21 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 22:49:25 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ PlayerBOB::PlayerBOB(int16_t x, int16_t y)
 	this->ttx = mttx;
 	this->tty = mtty;
 
+	this->hp = 3;
+
 	this->maxTtSplit = 20;
 	this->ttSplit = maxTtSplit;
 }
@@ -32,3 +34,9 @@ PlayerBOB::PlayerBOB(int16_t x, int16_t y)
 PlayerBOB::PlayerBOB(const PlayerBOB &) {}
 PlayerBOB::~PlayerBOB() {}
 PlayerBOB &PlayerBOB::operator=(const PlayerBOB &) { return *this; }
+
+bool PlayerBOB::onHit(World &world, Entity &by)
+{
+	PlayerBullet::onHit(world, by);
+	return (hp-- <= 0);
+}
