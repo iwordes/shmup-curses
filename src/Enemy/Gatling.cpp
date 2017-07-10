@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 17:26:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 19:33:22 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 19:49:45 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void EnemyGatling::onFire(World &world)
 {
 	int tmp = tt % 4;
 
-	int tx = -1 - (rng() % 5);
-	int ty = -10 - (rng() % 10);
+	int tx = -1 - (rng() % 3);
+	int ty = -10 - (rng() % 3);
 
 	if (tmp == 0)
 		world.addFg(new Projectile(type, "-", x - 1, y - 1, tx, ty));
