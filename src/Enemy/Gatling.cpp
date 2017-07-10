@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 17:26:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 18:29:08 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 18:52:14 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void EnemyGatling::onTick(World &world)
 	// 2. Move forward for N ticks
 	// 3. Wait for N ticks
 
-	if (tt <= 20)
+	if (tt <= 60)
 		onMove(world);
-	else if (tt <= 60)
+	else if (tt <= 100)
 		onFire(world);
-	else if (tt == 100)
+	else if (tt == 160)
 		tt = -1;
 	tt++;
 }
