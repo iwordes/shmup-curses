@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 12:11:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 18:30:17 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 18:33:18 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ static bool chance(int n, int max)
 
 void World::spawn()
 {
-	ADD(EnemyGatling);
-	return;
-
 	if (wave >= 20 && chance(1, 10))
 		;// ...
 	else if (wave >= 20 && chance(1, 10))

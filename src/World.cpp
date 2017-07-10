@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 18:32:23 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 18:48:51 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ World::World(uint32_t w, uint32_t h)
 	curs_set(false);
 	noecho();
 	timeout(0);
+
+	// Force fullscreen.
+	this->h = LINES - 2;
+	this->w = COLS;
+	h = LINES - 2;
+	w = COLS;
 
 	winGame = subwin(term, h, w, 0, 0);
 	winHud = subwin(term, 2, w, h, 0);

@@ -6,13 +6,13 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 16:50:19 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 17:00:26 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 18:34:31 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <EnemyKamikaze.hpp>
 
-EnemyKamikaze::EnemyKamikaze(int16_t x, int16_t y): Enemy("<", x, y)
+EnemyKamikaze::EnemyKamikaze(int16_t x, int16_t y): Enemy("<<", x, y, 2)
 {
 	this->maxTtFire = 1024;
 	this->maxTtMove = 3;
