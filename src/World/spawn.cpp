@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 12:11:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 21:38:37 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 21:52:00 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <EnemyGatling.hpp>
 #include <EnemyTwirly.hpp>
 #include <EnemySpiky.hpp>
+#include <EnemyShotty.hpp>
 
 static std::random_device rd;
 static std::mt19937 rng(rd());
@@ -36,10 +37,6 @@ static bool chance(int n, int max)
 
 void World::spawn()
 {
-	if (chance(1, 10))
-		ADD(EnemySpiky);
-		return;
-
 	if (wave >= 15 && chance(1, 8))
 		;// ...
 	else if (wave >= 15 && chance(1, 30))
@@ -53,12 +50,15 @@ void World::spawn()
 		else
 			ADD(EnemyOcto);
 	}
-	else if (wave >= 5 && chance(1, 3))
-		;//ADD(EnemyShotty);
 	else if (wave >= 3 && chance(1, 3))
 		ADD(EnemyBomber);
 	else if (chance(1, 3))
-		ADD(EnemyShooter);
+	{
+		if (wave >= 5)
+			ADD(EnemyShotty);
+		else
+			ADD(EnemyShooter);
+	}
 	else
 		ADD(EnemyKamikaze);
 }
