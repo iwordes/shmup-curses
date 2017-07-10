@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 17:08:00 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 18:32:23 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,12 @@ void World::drawClip(const Entity &e)
 	for (uint16_t y = 0; y < e.h; y++) if (e.y + y >= 0 && e.y + y < (int)h)
 		for (uint16_t x = 0; x < e.w; x++) if (e.x + x >= 0 && e.x + x < (int)w)
 			if (e.icon[y * e.w + x] != ' ')
-				mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x]);
+			{
+				if (&e == fg[0])
+					mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x] | A_BOLD);
+				else
+					mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x]);
+			}
 }
 
 void World::draw()
@@ -250,7 +255,7 @@ bool World::collide(Entity &e)
 
 static inline void addEntity(Entity **&arr, uint32_t &l, Entity *ent)
 {
-	for (uint32_t i = 0; i < l; i++)
+	for (uint32_t i = 1; i < l; i++)
 		if (arr[i] == NULL)
 		{
 			arr[i] = ent;
