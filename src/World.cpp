@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 21:17:13 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 23:13:26 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,8 @@ void World::start()
 			usleep(50000 - (t2 - t1));
 	}
 
-	werase(winHud);
-	mvwprintw(winHud, 0, w / 2 - 7, ":: You lose! ::");
-	wrefresh(winHud);
+	mvwprintw(winGame, h / 2, w / 2 - 7, ":: You lose! ::");
+	wrefresh(winGame);
 	pause();
 }
 

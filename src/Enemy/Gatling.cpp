@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 17:26:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 19:49:45 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 23:27:43 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ EnemyGatling::EnemyGatling(int16_t x, int16_t y): Enemy("}=", x, y, 2, 1)
 	this->ttFire = 3;
 	this->ttMove = 2;
 	this->tt = 0;
+
+	this->score = 1600;
 }
 
 EnemyGatling::EnemyGatling(const EnemyGatling &copy)

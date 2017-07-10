@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 12:11:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 21:52:00 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 22:53:21 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void World::spawn()
 		;// ...
 	else if (wave >= 15 && chance(1, 30))
 		ADD(EnemyGatling);
-	else if (wave >= 10 && chance(1, 5))
+	else if (wave >= 10 && chance(1, 10))
 		ADD(EnemyTwirly);
-	else if (wave >= 5 && chance(1, 3))
+	else if (wave >= 5 && chance(1, 5))
 	{
-		if (wave >= 10)
+		if (wave >= 10 && chance(1, 2))
 			ADD(EnemySpiky);
 		else
 			ADD(EnemyOcto);
@@ -54,7 +54,7 @@ void World::spawn()
 		ADD(EnemyBomber);
 	else if (chance(1, 3))
 	{
-		if (wave >= 5)
+		if (wave >= 8 && chance(1, 3))
 			ADD(EnemyShotty);
 		else
 			ADD(EnemyShooter);

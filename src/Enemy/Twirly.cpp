@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 20:51:06 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 21:17:05 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 23:27:09 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ EnemyTwirly::EnemyTwirly(int16_t x, int16_t y): Enemy("@", x, y, 1, 1)
 	this->ttMove = maxTtMove;
 
 	this->side = 0;
+	this->score = 800;
 }
 
 EnemyTwirly::EnemyTwirly(const EnemyTwirly &) {}

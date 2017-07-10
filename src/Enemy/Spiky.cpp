@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 20:50:31 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 21:37:50 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 23:27:00 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ EnemySpiky::EnemySpiky(int16_t x, int16_t y): Enemy("X", x, y, 1, 1)
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
 	this->ff = false;
+
+	this->score = 1000;
 }
 
 EnemySpiky::EnemySpiky(const EnemySpiky &) {}
