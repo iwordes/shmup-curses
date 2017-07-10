@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 18:33:39 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 21:07:26 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 	this->lvl = 0;
 	this->hp = 2;
 
+	this->time = 0;
+	this->score = 0;
 	this->scoreToLvl = 8000;
 }
 
@@ -113,12 +115,15 @@ void Player::tryLevel()
 
 void Player::onFire(World &world)
 {
-	world.addFg(new PlayerBullet("=", x + 1, y, 1, 0));
 	if (lvl >= 3)
 	{
 		world.addFg(new PlayerBullet("/", x + 1, y - 1, 1, -6));
 		world.addFg(new PlayerBullet("\\", x + 1, y + 1, 1, 6));
 	}
+	//if (lvl >= 6)
+	//	world.addFg(new PlayerSawtooth(x + 1, y, 1, 0));
+	//else
+		world.addFg(new PlayerBullet("=", x + 1, y, 1, 0));
 }
 
 bool Player::onHit(World &, Entity &)
