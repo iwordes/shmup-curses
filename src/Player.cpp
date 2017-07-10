@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 22:37:37 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 22:40:52 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,10 @@ void Player::onFire(World &world)
 		world.addFg(new PlayerBOB(x + 1, y));
 	else
 		world.addFg(new PlayerBullet("=", x + 1, y, 1, 0));
-	// if (lvl >= 10)
+	if (lvl >= 10)
 	{
+		world.addFg(new Projectile(type, "[", x + 3, y - 3, 1, 0));
+		world.addFg(new Projectile(type, "[", x + 3, y + 3, 1, 0));
 		// world.addFg(new Sawtooth(type, "x", x - 1, y, 1));
 		// world.addFg(new Sawtooth(type, "x", x - 1, y, -1));
 	}
