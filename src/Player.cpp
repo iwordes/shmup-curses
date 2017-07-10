@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 22:40:52 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 23:36:15 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 	this->ttMove = maxTtMove;
 	this->ttHit = 0;
 	this->lvl = 0;
-	this->hp = 2;
+	this->hp = 3;
 
 	this->time = 0;
 	this->score = 0;
@@ -128,8 +128,20 @@ void Player::onFire(World &world)
 		world.addFg(new PlayerBullet("=", x + 1, y, 1, 0));
 	if (lvl >= 10)
 	{
-		world.addFg(new Projectile(type, "[", x + 3, y - 3, 1, 0));
-		world.addFg(new Projectile(type, "[", x + 3, y + 3, 1, 0));
+		PlayerBOB *t1 = new PlayerBOB(x + 3, y - 3);
+		PlayerBOB *t2 = new PlayerBOB(x + 3, y + 3);
+
+		t1->icon = "[";
+		t1->w = 1;
+
+		t2->icon = "[";
+		t2->w = 1;
+
+		world.addFg(t1);
+		world.addFg(t2);
+
+		// world.addFg(new Projectile(type, "[", x + 3, y - 3, 1, 0));
+		// world.addFg(new Projectile(type, "[", x + 3, y + 3, 1, 0));
 		// world.addFg(new Sawtooth(type, "x", x - 1, y, 1));
 		// world.addFg(new Sawtooth(type, "x", x - 1, y, -1));
 	}
