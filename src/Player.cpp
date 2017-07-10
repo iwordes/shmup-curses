@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 23:36:15 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 23:36:40 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	Player::onTick(World &world)
 	tryLevel();
 
 	werase(world.winHud);
-	mvwprintw(world.winHud, 0, 0, " Lv.%u -- HP: %u -- Shoot: %u -- Move: %u", lvl, hp + 1, maxTtFire, maxTtMove);
+	mvwprintw(world.winHud, 0, 0, " Lv.%u -- HP: %u -- Shoot: %u -- Move: %u", lvl, hp, maxTtFire, maxTtMove);
 	mvwprintw(world.winHud, 1, 0, " Score: %u -- Time: %.2u:%.2u -- Wave %u in T-%.2u:%.2u.%.3u",
 		score,
 		this->time / 1000 / 60, this->time / 1000 % 60,
