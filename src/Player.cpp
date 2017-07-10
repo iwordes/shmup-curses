@@ -6,11 +6,12 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 21:07:26 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 22:17:01 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Player.hpp>
+#include <PlayerBOB.hpp>
 
 Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 {
@@ -120,9 +121,9 @@ void Player::onFire(World &world)
 		world.addFg(new PlayerBullet("/", x + 1, y - 1, 1, -6));
 		world.addFg(new PlayerBullet("\\", x + 1, y + 1, 1, 6));
 	}
-	//if (lvl >= 6)
-	//	world.addFg(new PlayerSawtooth(x + 1, y, 1, 0));
-	//else
+	if (lvl >= 6)
+		world.addFg(new PlayerBOB(x + 1, y));
+	else
 		world.addFg(new PlayerBullet("=", x + 1, y, 1, 0));
 }
 

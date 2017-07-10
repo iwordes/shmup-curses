@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PlayerBullet.hpp                                   :+:      :+:    :+:   */
+/*   BulletOfBullets.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/09 14:14:56 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 22:09:57 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/09 21:54:08 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/09 22:09:45 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYERBULLET_HPP
-# define PLAYERBULLET_HPP
+#ifndef BOB_HPP
+# define BOB_HPP
 
 # include "Projectile.hpp"
 # include "World.hpp"
 
-class PlayerBullet: virtual public Projectile
+class BulletOfBullets: virtual public Projectile
 {
 public:
-	PlayerBullet(const char *icon = "=", int16_t x = 0, int16_t y = 0, uint8_t tx = 1, uint8_t ty = 0);
-	PlayerBullet(const PlayerBullet &copy);
-	PlayerBullet(const Projectile &copy);
-	~PlayerBullet();
+	BulletOfBullets(uint8_t type = -1, const char *icon = "=",
+		int16_t x = 0, int16_t y = 0, int16_t tx = -1, int16_t ty = 0, uint8_t ttSplit = 20);
+	BulletOfBullets(const BulletOfBullets &);
+	~BulletOfBullets();
 
-	PlayerBullet &operator=(const PlayerBullet &rhs);
-	PlayerBullet &operator=(const Projectile &rhs);
+	BulletOfBullets &operator=(const BulletOfBullets &);
 
-	bool onHit(World &world, Entity &by);
+	uint8_t maxTtSplit;
+	uint8_t ttSplit;
+
+	virtual void onTick(World &world);
+	virtual void onSplit(World &world);
 };
 
 #endif
