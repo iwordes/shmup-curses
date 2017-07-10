@@ -6,12 +6,13 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 22:17:01 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 22:37:37 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Player.hpp>
 #include <PlayerBOB.hpp>
+#include <Sawtooth.hpp>
 
 Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 {
@@ -125,6 +126,11 @@ void Player::onFire(World &world)
 		world.addFg(new PlayerBOB(x + 1, y));
 	else
 		world.addFg(new PlayerBullet("=", x + 1, y, 1, 0));
+	// if (lvl >= 10)
+	{
+		// world.addFg(new Sawtooth(type, "x", x - 1, y, 1));
+		// world.addFg(new Sawtooth(type, "x", x - 1, y, -1));
+	}
 }
 
 bool Player::onHit(World &, Entity &)
