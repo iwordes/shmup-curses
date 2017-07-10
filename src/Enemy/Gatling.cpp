@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 17:26:07 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 18:52:14 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 19:33:22 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ EnemyGatling::EnemyGatling(int16_t x, int16_t y): Enemy("}=", x, y, 2, 1)
 {
 	this->score = 400;
 	this->ttFire = 3;
-	this->ttMove = 5;
+	this->ttMove = 2;
 	this->tt = 0;
 }
 
@@ -40,11 +40,11 @@ void EnemyGatling::onTick(World &world)
 	// 2. Move forward for N ticks
 	// 3. Wait for N ticks
 
-	if (tt <= 60)
+	if (tt <= 20)
 		onMove(world);
-	else if (tt <= 100)
+	else if (tt <= 60)
 		onFire(world);
-	else if (tt == 160)
+	else if (tt == 100)
 		tt = -1;
 	tt++;
 }
@@ -62,8 +62,8 @@ void EnemyGatling::onFire(World &world)
 {
 	int tmp = tt % 4;
 
-	int tx = -1 - (rng() % 10);
-	int ty = -6 - (rng() % 5);
+	int tx = -1 - (rng() % 5);
+	int ty = -10 - (rng() % 10);
 
 	if (tmp == 0)
 		world.addFg(new Projectile(type, "-", x - 1, y - 1, tx, ty));

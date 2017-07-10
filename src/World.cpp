@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 18:53:09 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/09 19:46:53 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ World::World(uint32_t w, uint32_t h)
 		fg[i] = NULL;
 	}
 
-	// this->clock = 0;
-
 	this->maxTtSpawn = 63;
 	this->minTtSpawn = 9;
 	this->ttSpawn = 60;
@@ -45,6 +43,9 @@ World::World(uint32_t w, uint32_t h)
 	curs_set(false);
 	noecho();
 	timeout(0);
+
+	start_color();
+	init_pair(1, COLOR_RED, COLOR_BLACK);
 
 	// Force fullscreen.
 	this->h = LINES - 2;
@@ -177,7 +178,7 @@ void World::drawClip(const Entity &e)
 			if (e.icon[y * e.w + x] != ' ')
 			{
 				if (&e == fg[0])
-					mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x] | A_BOLD);
+					mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x] | COLOR_PAIR(1));
 				else
 					mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x]);
 			}
