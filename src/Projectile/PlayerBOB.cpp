@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:00:14 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 22:49:25 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 13:41:47 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ PlayerBOB::PlayerBOB(int16_t x, int16_t y)
 	this->y = y;
 	this->w = 2;
 	this->h = 1;
+
+	this->type = 0;
 
 	this->mttx = 1;
 	this->mtty = 0;

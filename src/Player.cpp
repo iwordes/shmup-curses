@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 23:36:40 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 14:48:48 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 {
 	this->type = 0;
 
-	this->maxTtFire = 16;
+	this->maxTtFire = 15;
 	this->maxTtMove = 4;
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
@@ -59,6 +59,9 @@ void	Player::onTick(World &world)
 		score,
 		this->time / 1000 / 60, this->time / 1000 % 60,
 		world.wave + 1, world.ttWave * 50 / 1000 / 60, world.ttWave * 50 / 1000 % 60, world.ttWave * 50 % 1000);
+
+	wprintw(world.winHud, " :: B%u", world.behind);
+
 	wrefresh(world.winHud);
 
 	if ((c = getch()) != ERR)
@@ -117,6 +120,7 @@ void Player::tryLevel()
 
 void Player::onFire(World &world)
 {
+
 	if (lvl >= 3)
 	{
 		world.addFg(new PlayerBullet("/", x + 1, y - 1, 1, -6));
@@ -128,22 +132,10 @@ void Player::onFire(World &world)
 		world.addFg(new PlayerBullet("=", x + 1, y, 1, 0));
 	if (lvl >= 10)
 	{
-		PlayerBOB *t1 = new PlayerBOB(x + 3, y - 3);
-		PlayerBOB *t2 = new PlayerBOB(x + 3, y + 3);
-
-		t1->icon = "[";
-		t1->w = 1;
-
-		t2->icon = "[";
-		t2->w = 1;
-
-		world.addFg(t1);
-		world.addFg(t2);
-
-		// world.addFg(new Projectile(type, "[", x + 3, y - 3, 1, 0));
-		// world.addFg(new Projectile(type, "[", x + 3, y + 3, 1, 0));
-		// world.addFg(new Sawtooth(type, "x", x - 1, y, 1));
-		// world.addFg(new Sawtooth(type, "x", x - 1, y, -1));
+		// world.addFg(new PlayerBullet(type, "[", x + 3, y - 3, 1, 0));
+		// world.addFg(new PlayerBullet(type, "[", x + 3, y + 3, 1, 0));
+		world.addFg(new Sawtooth(type, "x", x - 1, y, 1));
+		world.addFg(new Sawtooth(type, "x", x - 1, y, 1));
 	}
 }
 

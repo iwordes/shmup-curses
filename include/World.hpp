@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 16:59:57 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 13:08:33 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ public:
 	WINDOW *term;
 	WINDOW *winGame;
 	WINDOW *winHud;
+
+	uint64_t behind;
 
 	uint32_t maxTtSpawn;
 	uint32_t minTtSpawn;

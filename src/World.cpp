@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 23:13:26 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 14:08:42 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 World::World(uint32_t w, uint32_t h)
 {
+	this->behind = 0;
+
 	this->w = w;
 	this->h = h;
 
@@ -46,6 +48,8 @@ World::World(uint32_t w, uint32_t h)
 
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, 52, COLOR_BLACK);
+	init_pair(3, 33, COLOR_BLACK);
 
 	// Force fullscreen.
 	this->h = LINES - 2;
@@ -104,6 +108,10 @@ void World::start()
 		t2 = utime();
 		if (t2 - t1 < 50000)
 			usleep(50000 - (t2 - t1));
+		if (t2 - t1 > 50000)
+			behind = t2 - t1 - 50000;
+		else
+			behind = 0;
 	}
 
 	mvwprintw(winGame, h / 2, w / 2 - 7, ":: You lose! ::");
@@ -151,13 +159,6 @@ void World::tick()
 	}
 	ttSpawn--;
 
-	if (ttScene <= 0)
-	{
-		ttScene = 20;// + rng() % 100;
-		// scene();
-	}
-	ttScene--;
-
 	draw();
 }
 
@@ -178,6 +179,8 @@ void World::drawClip(const Entity &e)
 			{
 				if (&e == fg[0])
 					mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x] | COLOR_PAIR(1));
+				else if (e.type == 0)
+					mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x] | COLOR_PAIR(3));
 				else
 					mvwaddch(winGame, e.y + y, e.x + x, e.icon[y * e.w + x]);
 			}
@@ -186,6 +189,10 @@ void World::drawClip(const Entity &e)
 void World::draw()
 {
 	werase(winGame);
+	if (fg[0] != NULL)
+		for (uint32_t x = 0, y = fg[0]->y; x < w; x++)
+			mvwaddch(winGame, y, x, '-' | COLOR_PAIR(2));
+
 	for (uint32_t i = 0; i < bgLen; i++)
 		if (bg[i] != NULL)
 			drawClip(*bg[i]);
