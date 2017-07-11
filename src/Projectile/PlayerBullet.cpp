@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 13:44:03 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 14:31:25 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 12:54:04 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ PlayerBullet &PlayerBullet::operator=(const Projectile &rhs)
 bool PlayerBullet::onHit(World &world, Entity &by)
 {
 	if (by.isEnemy())
-		world.fg[0]->score += ((Enemy*)&by)->score;
+		world.fg[0]->score += by.score;
 	else if (by.isBullet())
 		world.fg[0]->score += 100;
 	return (true);

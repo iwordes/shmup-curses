@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:17:27 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 14:29:41 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 12:56:08 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ Entity::Entity(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h)
 	this->h = h;
 	this->x = x;
 	this->y = y;
+
+	this->score = 0;
 }
 
 Entity::Entity(const Entity &)
