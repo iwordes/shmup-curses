@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:40:58 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 14:41:35 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 20:45:08 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ public:
 	uint8_t ttMove;
 	uint8_t ttHit;
 
+	int8_t bomb;
 	int8_t hp;
+
 	uint8_t lvl;
 
 	uint32_t time;

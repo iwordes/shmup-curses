@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:42:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/11 14:48:48 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 21:31:43 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ Player::Player(uint16_t x, uint16_t y): Entity(">", x, y, 1, 1)
 	this->ttFire = maxTtFire;
 	this->ttMove = maxTtMove;
 	this->ttHit = 0;
+
+	this->bomb = 1;
 	this->lvl = 0;
 	this->hp = 3;
 
@@ -53,6 +55,7 @@ void	Player::onTick(World &world)
 
 	tryLevel();
 
+	// PROTO HUD
 	werase(world.winHud);
 	mvwprintw(world.winHud, 0, 0, " Lv.%u -- HP: %u -- Shoot: %u -- Move: %u", lvl, hp, maxTtFire, maxTtMove);
 	mvwprintw(world.winHud, 1, 0, " Score: %u -- Time: %.2u:%.2u -- Wave %u in T-%.2u:%.2u.%.3u",
@@ -61,11 +64,27 @@ void	Player::onTick(World &world)
 		world.wave + 1, world.ttWave * 50 / 1000 / 60, world.ttWave * 50 / 1000 % 60, world.ttWave * 50 % 1000);
 
 	wprintw(world.winHud, " :: B%u", world.behind);
-
 	wrefresh(world.winHud);
+	// /PROTO HUD
+
+	attron(COLOR_PAIR(2));
+	if (y + 1 < (long)world.h)
+		mvwprintw(world.winGame, y + 1, x, "%u", hp);
+	else
+		mvwprintw(world.winGame, y - 1, x, "%u", hp);
+	attroff(COLOR_PAIR(2));
 
 	if ((c = getch()) != ERR)
 	{
+		if (c == '2' && bomb > 0)
+		{
+			for (uint64_t i = 1; i < world.fgLen; i++)
+			{
+				delete world.fg[i];
+				world.fg[i] = NULL;
+			}
+			bomb--;
+		}
 		if ((c == 'w' || c == 'a' || c == 's' || c == 'd') && ttMove <= 0)
 		{
 			ttMove = maxTtMove;
@@ -108,13 +127,13 @@ void Player::tryLevel()
 			maxTtMove--;
 		if (lvl & 1 && maxTtFire > 3)
 			maxTtFire--;
-		if (lvl & 2)
+		if (lvl & 1)
 			hp++;
 
 		lvl++;
 
-		scoreToLvl += 8000;
-		scoreToLvl += lvl * 2000;
+		scoreToLvl += 7000;
+		scoreToLvl += lvl * 1500;
 	}
 }
 

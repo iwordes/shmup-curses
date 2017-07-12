@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:31:13 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/11 14:08:42 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/11 20:52:21 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ void World::drawClip(const Entity &e)
 
 void World::draw()
 {
-	werase(winGame);
+	// werase(winGame);
 	if (fg[0] != NULL)
 		for (uint32_t x = 0, y = fg[0]->y; x < w; x++)
 			mvwaddch(winGame, y, x, '-' | COLOR_PAIR(2));
@@ -200,6 +200,7 @@ void World::draw()
 		if (fg[i] != NULL)
 			drawClip(*fg[i]);
 	wrefresh(winGame);
+	werase(winGame);
 }
 
 // =====================================================================================================================
