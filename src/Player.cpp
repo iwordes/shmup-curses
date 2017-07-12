@@ -144,5 +144,5 @@ bool Player::onHit(World &, Entity &)
 	if (ttHit > 0)
 		return false;
 	ttHit = 10;
-	return (hp-- <= 0);
+	return (--hp <= 0);
 }
