@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:42:44 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:15:25 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 16:14:31 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #include "Entities.hpp"
 #include "Player.hpp"
 
+#include <assert.h>
+
 World::World()
 {
-	this->w = COLS;
-	this->h = LINES - 2;
-
 	this->ttSpawn = 90;
 	this->ttWave = 90;
 	this->wave = 0;
@@ -26,8 +25,8 @@ World::World()
 	// --------------------
 
 	this->term = initscr();
-	this->window = subwin(term, h, w, 0, 0);
-	this->hud = subwin(term, 2, w, h, 0);
+	this->w = COLS;
+	this->h = LINES - 2;
 
 	curs_set(false);
 	noecho();
@@ -37,6 +36,9 @@ World::World()
 	init_pair(1, COLOR_RED, COLOR_BLACK);
 	init_pair(2, 52, COLOR_BLACK);
 	init_pair(3, 33, COLOR_BLACK);
+
+	this->window = subwin(term, h, w, 0, 0);
+	this->hud = subwin(term, 2, w, h, 0);
 }
 
 World::~World()
@@ -61,11 +63,11 @@ void World::start()
 	uint64_t t1;
 	uint64_t t2;
 
-	fg1.add(new Player(1, h / 2));
+	fg1.add(new Player(0, h / 2));
 	while (fg1[0] != NULL)
 	{
 		t1 = utime();
-		spawn();
+		// spawn();
 		tick();
 		draw();
 		t2 = utime();

@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 12:57:45 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:17:11 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 16:04:32 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Entities::Entities()
 	this->effect = 0;
 
 	this->collider = NULL;
-	this->len = 0;
+	this->col_len = 0;
 }
 
 Entities::~Entities()
@@ -37,7 +37,7 @@ Entities::~Entities()
 
 void Entities::add(Entity *ent)
 {
-	for (uint32_t i = 1; i < len; i++)
+	for (uint32_t i = 0; i < len; i++)
 		if (arr[i] == NULL)
 		{
 			arr[i] = ent;
