@@ -5,73 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/08 11:47:39 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/11 13:08:33 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/13 11:43:31 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/13 14:18:32 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WORLD_HPP
 # define WORLD_HPP
 
-# include <curses.h>
-# include <stdint.h>
-# include <sys/time.h>
-# include <unistd.h>
-# include "Entity.hpp"
-
-class Player;
+# define TPS 30
 
 class World
 {
 public:
-	World(uint32_t x = 80, uint32_t y = 24);
-	World(const World &copy);
+	World();
 	~World();
 
-	const World &operator=(const World &rhs);
-
-	// =================================================================================================================
-
-	uint32_t w;
-	uint32_t h;
-
-	WINDOW *term;
-	WINDOW *winGame;
-	WINDOW *winHud;
-
-	uint64_t behind;
-
-	uint32_t maxTtSpawn;
-	uint32_t minTtSpawn;
-	uint32_t ttSpawn;
-	uint32_t ttScene;
-
-	uint32_t ttWave;
-	uint32_t wave;
-
-	Entity **bg;
-	Entity **fg;
-	uint32_t fgLen;
-	uint32_t bgLen;
-
-	// =================================================================================================================
-
 public:
-	void start();
-
-	void addBg(Entity *entity);
-	void addFg(Entity *entity);
-
-	bool bound(Entity &entity);
-	bool collide(Entity &entity);
+	start();
 
 private:
-	void tick();
-	void pause();
-	void spawn();
+	tick();
+	draw();
+	spawn();
 
-	void draw();
-	void drawClip(const Entity &entity);
+public:
+	Entities bg;
+	Entities fg1;
+	Entities fg2;
+
+	WINDOW *term;
+	WINDOW *window;
+	WINDOW *hud;
+
+	int32_t w;
+	int32_t h;
+
+	uint32_t ttSpawn;
+	uint32_t ttWave;
+	uint32_t wave;
 };
 
 #endif

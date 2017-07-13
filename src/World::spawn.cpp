@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sawtooth.hpp                                       :+:      :+:    :+:   */
+/*   World::spawn.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/09 22:28:26 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 22:35:21 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/13 14:13:11 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/13 14:23:45 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SAWTOOTH_HPP
-# define SAWTOOTH_HPP
+#include <World.hpp>
 
-# include "Projectile.hpp"
-
-class Sawtooth: public Projectile
+void World::spawn()
 {
-public:
-	Sawtooth(uint8_t type = -1, const char *icon = "x", int16_t x = 0, int16_t y = 0, int8_t d = 1);
-	Sawtooth(const Sawtooth &);
-	~Sawtooth();
+	if (ttWave-- <= 0)
+	{
+		ttWave = wave * 20 * TPS;
+		wave++;
+	}
 
-	Sawtooth &operator=(const Sawtooth &);
-
-	int8_t d;
-	int8_t ttTurn;
-
-	void onTick(World &);
-	bool onHit(World &world, Entity &by);
-};
-
-#endif
+	if (ttSpawn-- <= 0)
+	{
+		ttSpawn = std::max(90 - (wave * 5), 30);
+		// ...
+	}
+}

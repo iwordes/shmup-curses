@@ -5,16 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/07 20:39:17 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/09 18:38:20 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/13 14:52:33 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/13 14:52:58 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <World.hpp>
+#include "World.hpp"
 
 int main()
 {
-	World world(80, 24);
-
+	World world;
 	world.start();
 }
