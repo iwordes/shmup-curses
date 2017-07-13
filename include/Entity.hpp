@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:36:48 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 14:58:11 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 15:19:32 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Entity
 {
 public:
 	Entity(const char *icon, int16_t x, int16_t y, uint16_t w = 1, uint16_t h = 1);
-	virtual ~Entity() = 0;
+	virtual ~Entity();
 
 	const char *icon;
 	uint16_t w;
