@@ -6,11 +6,13 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 12:57:45 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 14:53:54 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 15:17:11 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Entities.hpp>
+#include <Entity.hpp>
+#include <World.hpp>
 
 Entities::Entities()
 {
@@ -33,7 +35,7 @@ Entities::~Entities()
 
 // =====================================================================================================================
 
-void Entities::add(Entity *entity)
+void Entities::add(Entity *ent)
 {
 	for (uint32_t i = 1; i < len; i++)
 		if (arr[i] == NULL)
@@ -59,7 +61,7 @@ void Entities::tick(World &world)
 {
 	for (uint32_t i = 0; i < len; i++)
 	{
-		if (arr[i] == NULL || _doCull(i) || _doCollide(i))
+		if (arr[i] == NULL || _doCull(world, *arr[i]) || _doCollide(world, i))
 			continue;
 		arr[i]->onTick(world);
 	}
@@ -114,7 +116,7 @@ bool Entities::collide(World &world, Entity &with)
 	{
 		if (doesCollide(with, *arr[i]))
 		{
-			bool d1 = with->onHit(world, *arr[i]);
+			bool d1 = with.onHit(world, *arr[i]);
 			bool d2 = arr[i]->onHit(world, with);
 
 			if (d2)
@@ -122,7 +124,8 @@ bool Entities::collide(World &world, Entity &with)
 				delete arr[i];
 				arr[i] = NULL;
 			}
-			return d1;
+			if (d1)
+				return true;
 		}
 	}
 	return false;
@@ -139,6 +142,8 @@ void Entities::addCollider(Entities &col)
 
 	delete collider;
 	collider = tmp;
+
+	collider[col_len++] = &col;
 }
 
 void Entities::setEffect(int effect)
@@ -157,7 +162,7 @@ void Entities::clear(uint32_t i)
 
 // =====================================================================================================================
 
-Entity *Entities::operator[](uint32_t i)
+Entity *Entities::operator[](uint32_t i) const
 {
 	return arr[i];
 }
@@ -176,7 +181,7 @@ bool Entities::_doCull(World &world, Entity &e)
 	);
 }
 
-bool Entities::_doCollide(World &world, uint16_t i)
+bool Entities::_doCollide(World &world, uint32_t i)
 {
 	for (uint16_t c = 0; c < col_len; c++)
 		if (collider[c]->collide(world, *arr[i]))

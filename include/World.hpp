@@ -6,12 +6,19 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:43:31 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 14:18:32 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 15:17:28 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WORLD_HPP
 # define WORLD_HPP
+# include <algorithm>
+# include <curses.h>
+# include <stdint.h>
+# include <sys/time.h>
+# include <unistd.h>
+# include "Entities.hpp"
+# include "Player.hpp"
 
 # define TPS 30
 
@@ -22,12 +29,12 @@ public:
 	~World();
 
 public:
-	start();
+	void start();
 
 private:
-	tick();
-	draw();
-	spawn();
+	void tick();
+	void draw();
+	void spawn();
 
 public:
 	Entities bg;

@@ -6,12 +6,16 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:35:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 14:54:17 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 15:17:13 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENTITIES_HPP
 # define ENTITIES_HPP
+# include <stdint.h>
+
+class Entity;
+class World;
 
 class Entities
 {
@@ -24,17 +28,17 @@ public:
 	void tick(World &world);
 	void draw(World &world);
 
-	bool collide(Entity &by);
+	bool collide(World &world, Entity &with);
 
 	void addCollider(Entities &add);
 	void setEffect(int effect);
 	void clear(uint32_t i = 0);
 
-	Entity &operator[](uint32_t i) const;
+	Entity *operator[](uint32_t i) const;
 
 private:
-	bool _doCull(World &w, Entity *entity);
-	bool _doCollide(Entity *entity);
+	bool _doCull(World &w, Entity &entity);
+	bool _doCollide(World &w, uint32_t i);
 
 	int effect;
 

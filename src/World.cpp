@@ -6,11 +6,13 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:42:44 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 14:27:30 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 15:15:25 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <World.hpp>
+#include "Entities.hpp"
+#include "Player.hpp"
 
 World::World()
 {
@@ -46,6 +48,13 @@ World::~World()
 }
 
 // =====================================================================================================================
+
+static uint64_t utime()
+{
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000000 + tv.tv_usec);
+}
 
 void World::start()
 {

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   World::spawn.cpp                                   :+:      :+:    :+:   */
+/*   Healthy.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/13 14:13:11 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:13:54 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/13 15:02:49 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/13 15:09:55 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <World.hpp>
+#ifndef HEALTHY_HPP
+# define HEALTHY_HPP
+# include "Entity.hpp"
+# include "World.hpp"
 
-void World::spawn()
+class Healthy
 {
-	if (ttWave-- <= 0)
-	{
-		ttWave = wave * 20 * TPS;
-		wave++;
-	}
+public:
+	uint8_t hp;
 
-	if (ttSpawn-- <= 0)
+	virtual bool onHit(World &, Entity &)
 	{
-		ttSpawn = std::max(90 - (int)(wave * 5), 30);
-		// ...
+		return (hp-- > 0);
 	}
-}
+};
+
+#endif

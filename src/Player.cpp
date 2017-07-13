@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:33:40 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 14:48:59 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 15:11:13 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void Player::onTick(World &world)
 	onMove(world);
 	onFire(world);
 	onLevel();
-	drawStats();
+	drawStats(world);
 }
 
-void Player::onFire(World &world)
+void Player::onFire(World &)
 {
 	if (ttFire-- <= 0)
 	{
-		world.fg1.add(new PlayerBullet("-", x + 1, y, 1, 0));
+		// world.fg1.add(new PlayerBullet("-", x + 1, y, 1, 0));
 		ttFire = maxFire;
 	}
 }
@@ -45,7 +45,7 @@ void Player::onMove(World &world)
 {
 	int c;
 
-	if (ttMove-- <= 0 && (c == getch()) != ERR)
+	if (ttMove-- <= 0 && (c = getch()) != ERR)
 	{
 		if ((c == 'w' || c == 'a' || c == 's' || c == 'd') && ttMove <= 0)
 		{
@@ -70,7 +70,7 @@ void Player::onLevel()
 	// ...
 }
 
-void Player::drawStats(World &world)
+void Player::drawStats(World &)
 {
 	// werase(world.hud);
 	// ...
