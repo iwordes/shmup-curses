@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 12:57:45 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 19:39:46 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 20:28:18 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void Entities::draw(World &world)
 				);
 			}
 		}
+
+		e.onDraw(world);
 	}
 }
 

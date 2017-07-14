@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:33:40 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 19:31:59 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 20:36:51 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ Player::Player(int16_t x, int16_t y): Entity(">", x, y)
 	this->maxMove = 3;
 	this->ttFire = maxFire;
 	this->ttMove = maxMove;
+
+	this->ttHit = 0;
 }
 
 void Player::onTick(World &world)
@@ -79,4 +81,21 @@ void Player::drawStats(World &)
 	// werase(world.hud);
 	// ...
 	// wrefresh(world.hud);
+}
+
+void Player::onDraw(World &world)
+{
+	wattron(world.window, COLOR_PAIR(2));
+
+	for (uint16_t x = this->x; x < world.w; x++)
+		mvwaddch(world.window, y, x, '-');
+
+	mvwprintw(world.window, y, x - 3, "L%u", lvl);
+	mvwprintw(world.window, y + 1, x, "%u", hp);
+
+	int fx = (ttHit > 0) ? (COLOR_PAIR(2)) : (COLOR_PAIR(1));
+
+	mvwaddch(world.window, y, x, '>' | fx);
+
+	wattroff(world.window, COLOR_PAIR(2));
 }

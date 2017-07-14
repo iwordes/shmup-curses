@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:42:44 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 18:30:54 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 20:13:40 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void World::start()
 	uint64_t t1;
 	uint64_t t2;
 
-	fg1.add(new Player(0, h / 2));
+	fg1.add(new Player(3, h / 2));
 	while (fg1[0] != NULL)
 	{
 		t1 = utime();

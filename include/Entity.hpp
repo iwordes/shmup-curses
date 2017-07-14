@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:36:48 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 19:28:54 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 20:32:02 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 
 	uint32_t score;
 	uint8_t type;
-	uint8_t hp;
+	int8_t hp;
 
 	virtual void onDraw(World &) {}
 	virtual void onTick(World &) {}

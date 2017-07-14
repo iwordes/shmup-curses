@@ -6,13 +6,15 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:13:11 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 18:21:25 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 20:07:42 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <random>
 #include <World.hpp>
+
 #include <EnemyRunner.hpp>
+#include <EnemyBomber.hpp>
 
 static std::random_device rd;
 static std::mt19937 rng(rd());
@@ -30,6 +32,6 @@ void World::spawn()
 	if (ttSpawn-- <= 0)
 	{
 		ttSpawn = std::max(90 - (int)(wave * 5), 30);
-		ADD(EnemyRunner);
+		ADD(EnemyBomber);
 	}
 }
