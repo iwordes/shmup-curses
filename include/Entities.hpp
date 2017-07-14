@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:35:23 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:17:13 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 19:40:00 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ public:
 	Entity *operator[](uint32_t i) const;
 
 private:
-	bool _doCull(World &w, Entity &entity);
+	bool _doCull(World &w, uint32_t i);
 	bool _doCollide(World &w, uint32_t i);
 
 	int effect;

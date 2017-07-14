@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 12:57:45 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 18:24:52 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 19:39:46 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void Entities::tick(World &world)
 {
 	for (uint32_t i = 0; i < len; i++)
 	{
-		if (arr[i] == NULL || _doCull(world, *arr[i]) || _doCollide(world, i))
+		if (arr[i] == NULL || _doCull(world, i) || _doCollide(world, i))
 			continue;
 		arr[i]->onTick(world);
 	}
@@ -171,9 +171,11 @@ Entity *Entities::operator[](uint32_t i) const
 
 // =====================================================================================================================
 
-bool Entities::_doCull(World &world, Entity &e)
+bool Entities::_doCull(World &world, uint32_t i)
 {
-	return !(
+	Entity &e = *arr[i];
+
+	bool cull = !(
 		e.x < (int)world.w && // Lent < Rwin &&
 		e.x + e.w > 0         // Rent > Lwin
 	) &&
@@ -181,6 +183,13 @@ bool Entities::_doCull(World &world, Entity &e)
 		e.y < (int)world.h && // Tent < Bwin &&
 		e.y + e.h > 0         // Bent > Twin
 	);
+
+	if (cull)
+	{
+		delete arr[i];
+		arr[i] = NULL;
+	}
+	return (cull);
 }
 
 bool Entities::_doCollide(World &world, uint32_t i)

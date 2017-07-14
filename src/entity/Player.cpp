@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:33:40 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 17:03:09 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 19:31:59 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ Player::Player(int16_t x, int16_t y): Entity(">", x, y)
 {
 	this->toLvl = 10000;
 	this->lvl = 1;
-	this->hp = 2;
+	this->hp = 3;
 
 	this->maxFire = 20;
-	this->maxMove = 5;
+	this->maxMove = 3;
 	this->ttFire = maxFire;
 	this->ttMove = maxMove;
 }
