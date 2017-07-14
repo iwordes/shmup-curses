@@ -6,13 +6,12 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 16:19:30 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 16:27:06 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 18:11:42 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BULLET_HPP
 # define BULLET_HPP
-
 # include "Entity.hpp"
 # include "World.hpp"
 
@@ -24,10 +23,10 @@ public:
 	virtual void onTick(World &);
 
 private:
-	uint8_t maxTtx;
-	uint8_t maxTty;
-	uint8_t ttx;
-	uint8_t tty;
+	int8_t moveX;
+	int8_t moveY;
+	int8_t ttx;
+	int8_t tty;
 };
 
 #endif

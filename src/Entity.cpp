@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 12:17:27 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:18:04 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 17:20:36 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ Entity::Entity(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h)
 
 	this->score = 0;
 	this->type = 0;
+	this->hp = 1;
 }
 
 Entity::~Entity() {}
@@ -30,4 +31,7 @@ Entity::~Entity() {}
 // =====================================================================================================================
 
 void Entity::onTick(World &) {}
-bool Entity::onHit(World &, Entity &) { return true; }
+
+bool Entity::onHit(World &, Entity &) {
+	return (--hp > 0);
+}

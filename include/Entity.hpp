@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:36:48 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:19:32 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 17:36:29 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ public:
 	int16_t y;
 
 	uint32_t score;
-	uint8_t  type;
+	uint8_t type;
+	uint8_t hp;
 
 	virtual void onTick(World &world);
 	virtual bool onHit(World &world, Entity &by);

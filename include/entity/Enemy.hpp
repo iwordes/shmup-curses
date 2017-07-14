@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Healthy.hpp                                        :+:      :+:    :+:   */
+/*   Enemy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/13 15:02:49 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:09:55 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/13 17:07:22 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/13 18:11:26 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEALTHY_HPP
-# define HEALTHY_HPP
+#ifndef ENEMY_HPP
+# define ENEMY_HPP
 # include "Entity.hpp"
-# include "World.hpp"
 
-class Healthy
+class Enemy: public Entity
 {
 public:
-	uint8_t hp;
+	Enemy(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h);
 
-	virtual bool onHit(World &, Entity &)
-	{
-		return (hp-- > 0);
-	}
+	uint8_t maxFire;
+	uint8_t ttFire;
+
+	virtual void onTick(World &world);
+	virtual void onFire(World &world) = 0;
+
+private:
+	int8_t moveX;
+	int8_t moveY;
+	int8_t ttx;
+	int8_t tty;
 };
 
 #endif

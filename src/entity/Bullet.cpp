@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 16:24:26 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 16:41:18 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 18:08:12 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 Bullet::Bullet(const char *icon, int16_t x, int16_t y, int16_t ttx, int16_t tty): Entity(icon, x, y)
 {
-	this->maxTtx = ttx;
-	this->maxTty = tty;
+	this->moveX = ttx;
+	this->moveY = tty;
 	this->ttx = ttx;
 	this->tty = tty;
 
@@ -24,25 +24,22 @@ Bullet::Bullet(const char *icon, int16_t x, int16_t y, int16_t ttx, int16_t tty)
 
 void Bullet::onTick(World &)
 {
-	int8_t dx = 0;
-	int8_t dy = 0;
+	int8_t dx = (moveX > 0) ? 1 : -1;
+	int8_t dy = (moveY > 0) ? 1 : -1;
 
-	if (maxTtx != 0)
-		dx = (maxTtx > 0) ? 1 : -1;
-	if (maxTty != 0)
-		dy = (maxTty > 0) ? 1 : -1;
-
-	if (ttx == 0)
+	if (moveX && ttx == 0)
 	{
-		ttx = maxTtx;
+		ttx = moveX;
 		x += dx;
 	}
-	if (tty == 0)
+	if (moveY && tty == 0)
 	{
-		tty = maxTty;
+		tty = moveY;
 		y += dy;
 	}
 
-	ttx -= dx;
-	tty -= dy;
+	if (moveX)
+		ttx -= dx;
+	if (moveY)
+		tty -= dy;
 }

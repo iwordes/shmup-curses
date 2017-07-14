@@ -6,16 +6,16 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:28:46 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:06:24 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 17:41:01 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_HPP
 # define PLAYER_HPP
 # include "World.hpp"
-# include "Healthy.hpp"
+# include "Entity.hpp"
 
-class Player: public Entity, public Healthy
+class Player: public Entity
 {
 public:
 	Player(int16_t x, int16_t y);
