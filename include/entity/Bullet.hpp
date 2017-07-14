@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 16:19:30 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 18:11:42 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 18:23:04 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 
 	virtual void onTick(World &);
 
-private:
+protected:
 	int8_t moveX;
 	int8_t moveY;
 	int8_t ttx;

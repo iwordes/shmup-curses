@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 17:28:52 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 18:08:42 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 18:19:48 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 Enemy::Enemy(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h): Entity(icon, x, y, w, h)
 {
+	this->moveX = 0;
+	this->moveY = 0;
+	this->ttx = moveX;
+	this->tty = moveY;
+
 	this->maxFire = 1;
 	this->ttFire = maxFire;
 }

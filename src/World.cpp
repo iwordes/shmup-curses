@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:42:44 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 17:42:50 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 18:24:17 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ World::World()
 
 	fg1.setEffect(COLOR_PAIR(3));
 
-	// fg1.addCollider(fg2);
-	// fg2.addCollider(fg1);
+	fg1.addCollider(fg2);
+	fg2.addCollider(fg1);
 }
 
 World::~World()

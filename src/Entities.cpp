@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 12:57:45 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 16:04:32 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 18:24:52 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ bool Entities::collide(World &world, Entity &with)
 {
 	for (uint32_t i = 0; i < len; i++)
 	{
+		if (arr[i] == NULL)
+			continue;
 		if (doesCollide(with, *arr[i]))
 		{
 			bool d1 = with.onHit(world, *arr[i]);
