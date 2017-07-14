@@ -6,11 +6,12 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:33:40 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 15:11:13 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 17:03:09 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Player.hpp>
+#include <BulletPlayer.hpp>
 
 Player::Player(int16_t x, int16_t y): Entity(">", x, y)
 {
@@ -32,11 +33,11 @@ void Player::onTick(World &world)
 	drawStats(world);
 }
 
-void Player::onFire(World &)
+void Player::onFire(World &world)
 {
 	if (ttFire-- <= 0)
 	{
-		// world.fg1.add(new PlayerBullet("-", x + 1, y, 1, 0));
+		world.fg1.add(new BulletPlayer("-", x + 1, y, 1, 0, 0));
 		ttFire = maxFire;
 	}
 }
@@ -45,7 +46,7 @@ void Player::onMove(World &world)
 {
 	int c;
 
-	if (ttMove-- <= 0 && (c = getch()) != ERR)
+	if ((c = getch()) != ERR)
 	{
 		if ((c == 'w' || c == 'a' || c == 's' || c == 'd') && ttMove <= 0)
 		{
@@ -63,6 +64,9 @@ void Player::onMove(World &world)
 		}
 		while (getch() != ERR);
 	}
+
+	if (ttMove > 0)
+		ttMove--;
 }
 
 void Player::onLevel()

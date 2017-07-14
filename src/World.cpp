@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:42:44 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 16:14:31 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 16:57:21 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ World::World()
 
 	this->window = subwin(term, h, w, 0, 0);
 	this->hud = subwin(term, 2, w, h, 0);
+
+	wtimeout(window, 0);
+	wtimeout(hud, 0);
+
+	fg1.setEffect(COLOR_PAIR(3));
 }
 
 World::~World()
@@ -67,7 +72,7 @@ void World::start()
 	while (fg1[0] != NULL)
 	{
 		t1 = utime();
-		// spawn();
+		spawn();
 		tick();
 		draw();
 		t2 = utime();
