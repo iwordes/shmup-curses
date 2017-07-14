@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:28:46 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 19:51:01 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 20:42:01 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ public:
 
 	void onDraw(World &world);
 	void onTick(World &world);
+	bool onHit(World &world, Entity &by);
 
 	void onMove(World &world);
 	void onFire(World &world);

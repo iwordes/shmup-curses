@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:33:40 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 20:36:51 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 20:42:46 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void Player::onMove(World &world)
 
 	if (ttMove > 0)
 		ttMove--;
+	if (ttHit > 0)
+		ttHit--;
 }
 
 void Player::onLevel()
@@ -98,4 +100,12 @@ void Player::onDraw(World &world)
 	mvwaddch(world.window, y, x, '>' | fx);
 
 	wattroff(world.window, COLOR_PAIR(2));
+}
+
+bool Player::onHit(World &, Entity &)
+{
+	if (ttHit > 0)
+		return false;
+	ttHit = 15;
+	return (--hp <= 0);
 }
