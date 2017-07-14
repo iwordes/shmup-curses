@@ -1,5 +1,5 @@
 CC := clang++
-CF += -Wall -Wextra -Werror -lncurses
+CF += -Wall -Wextra -Werror -fsanitize=address -lncurses
 CF += -I include -I include/entity -I include/trait
 
 SRC := src/**.cpp

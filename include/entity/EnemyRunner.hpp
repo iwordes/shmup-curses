@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Entity.cpp                                         :+:      :+:    :+:   */
+/*   EnemyRunner.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/08 12:17:27 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 18:32:50 by iwordes          ###   ########.fr       */
+/*   Created: 2017/07/13 18:17:09 by iwordes           #+#    #+#             */
+/*   Updated: 2017/07/13 18:22:30 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Entity.hpp>
-#include <World.hpp>
+#ifndef ENEMYRUNNER_HPP
+# define ENEMYRUNNER_HPP
+# include "Enemy.hpp"
 
-Entity::Entity(const char *icon, int16_t x, int16_t y, uint16_t w, uint16_t h)
+class EnemyRunner: public Enemy
 {
-	this->icon = icon;
-	this->w = w;
-	this->h = h;
-	this->x = x;
-	this->y = y;
+public:
+	EnemyRunner(int16_t x, int16_t y);
 
-	this->score = 0;
-	this->type = 0;
-	this->hp = 1;
-}
+	void onFire(World &);
+};
 
-bool Entity::onHit(World &, Entity &) {
-	return (--hp > 0);
-}
+#endif

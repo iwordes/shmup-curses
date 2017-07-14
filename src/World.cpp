@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 11:42:44 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 18:24:17 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/13 18:30:54 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ World::World()
 
 	this->term = initscr();
 	this->w = COLS;
-	this->h = LINES - 2;
+	this->h = LINES - 1;
 
 	curs_set(false);
 	noecho();
@@ -38,7 +38,7 @@ World::World()
 	init_pair(3, 33, COLOR_BLACK);
 
 	this->window = subwin(term, h, w, 0, 0);
-	this->hud = subwin(term, 2, w, h, 0);
+	this->hud = subwin(term, 1, w, h, 0);
 
 	wtimeout(window, 0);
 	wtimeout(hud, 0);
