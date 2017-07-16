@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:28:46 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 20:42:01 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/15 20:44:35 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ public:
 
 	uint32_t toLvl;
 	uint8_t  lvl;
+
+	uint32_t tick;
 
 	void onDraw(World &world);
 	void onTick(World &world);

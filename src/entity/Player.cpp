@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:33:40 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 20:42:46 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/15 20:50:15 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ Player::Player(int16_t x, int16_t y): Entity(">", x, y)
 	this->ttMove = maxMove;
 
 	this->ttHit = 0;
+
+	this->tick = 0;
 }
 
 void Player::onTick(World &world)
@@ -33,13 +35,15 @@ void Player::onTick(World &world)
 	onFire(world);
 	onLevel();
 	drawStats(world);
+
+	tick += 1;
 }
 
 void Player::onFire(World &world)
 {
 	if (ttFire-- <= 0)
 	{
-		world.fg1.add(new BulletPlayer("-", x + 1, y, 1, 0, 0));
+		world.fg1.add(new BulletPlayer("-", x + 1, y, 1, 0, 1));
 		ttFire = maxFire;
 	}
 }
@@ -75,14 +79,25 @@ void Player::onMove(World &world)
 
 void Player::onLevel()
 {
-	// ...
+	if (score >= toLvl)
+	{
+		toLvl += (lvl * 2000);
+	}
 }
 
-void Player::drawStats(World &)
+void Player::drawStats(World &world)
 {
-	// werase(world.hud);
-	// ...
-	// wrefresh(world.hud);
+	uint32_t ws = (world.ttWave * (1000000 / TPS)) / 1000000;
+	uint32_t ms = (tick * (1000000 / TPS)) / 1000;
+
+	werase(world.hud);
+	mvwprintw(world.hud, 0, 0, "%.2u:%.2u.%.3u -- %.10u -- Wave %u; next in T-%.2u:%.2u",
+		ms / 1000 / 60, ms / 1000 % 60, ms % 1000,
+		score,
+		world.wave,
+		ws / 60, ws % 60
+	);
+	wrefresh(world.hud);
 }
 
 void Player::onDraw(World &world)
