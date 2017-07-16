@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:33:40 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/15 21:01:00 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/16 09:43:03 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ Player::Player(int16_t x, int16_t y): Entity(">", x, y)
 void Player::onTick(World &world)
 {
 	onMove(world);
-	onFire(world);
-	onLevel();
+	if (ttFire-- <= 0)
+		onFire(world);
+	if (score >= toLvl)
+		onLevel();
 	drawStats(world);
 
 	tick += 1;
@@ -41,11 +43,12 @@ void Player::onTick(World &world)
 
 void Player::onFire(World &world)
 {
-	if (ttFire-- <= 0)
-	{
+	if (lvl <= 3)
 		world.fg1.add(new BulletPlayer("-", x + 1, y, 1, 0, 1));
-		ttFire = maxFire;
-	}
+	else if (lvl <= 6)
+		world.fg1.add(new BulletPlayer("=", x + 1, y, 1, 0, 2));
+
+	ttFire = maxFire;
 }
 
 void Player::onMove(World &world)
