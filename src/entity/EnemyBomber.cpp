@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 20:04:56 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 20:23:48 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/15 20:54:17 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ EnemyBomber::EnemyBomber(int16_t x, int16_t y): Enemy("<[", x, y, 2, 1)
 	this->hp = 2;
 	this->moveX = -1;
 	this->maxFire = 2;
+	this->score = 2000;
 }
 
 void EnemyBomber::onFire(World &world)
