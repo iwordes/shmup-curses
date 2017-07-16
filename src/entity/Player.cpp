@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 14:33:40 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/15 20:50:15 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/15 21:01:00 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,13 @@ void Player::onLevel()
 {
 	if (score >= toLvl)
 	{
-		toLvl += (lvl * 2000);
+		if (lvl & 1)
+			hp++;
+		if (lvl % 4 == 0 && ttFire > 3)
+			ttFire--;
+
+		lvl++;
+		toLvl += lvl * 10000;
 	}
 }
 
