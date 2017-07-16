@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 20:36:48 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 20:32:02 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/15 18:12:36 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ public:
 	uint8_t type;
 	int8_t hp;
 
-	virtual void onDraw(World &) {}
+	virtual void onDraw(World &);
 	virtual void onTick(World &) {}
 	virtual bool onHit(World &world, Entity &by);
 };

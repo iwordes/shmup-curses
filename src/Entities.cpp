@@ -6,7 +6,7 @@
 /*   By: iwordes <iwordes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 12:57:45 by iwordes           #+#    #+#             */
-/*   Updated: 2017/07/13 20:28:18 by iwordes          ###   ########.fr       */
+/*   Updated: 2017/07/15 18:14:59 by iwordes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,32 +67,15 @@ void Entities::tick(World &world)
 	}
 }
 
-#define BOUND_Y (e.y + y >= 0 && e.y + y < (int)world.h)
-#define BOUND_X (e.x + x >= 0 && e.x + x < (int)world.w)
-
 void Entities::draw(World &world)
 {
 	for (uint32_t i = 0; i < len; i++)
 	{
 		if (arr[i] == NULL)
 			continue;
-
-		Entity &e = *arr[i];
-
-		for (int16_t y = 0; y < e.h; y++) if (BOUND_Y)
-		{
-			for (int16_t x = 0; x < e.w; x++) if (BOUND_X)
-			{
-				mvwaddch(
-					world.window,
-					e.y + y,
-					e.x + x,
-					e.icon[y * e.w + x] | effect
-				);
-			}
-		}
-
-		e.onDraw(world);
+		wattron(world.window, effect);
+		arr[i]->onDraw(world);
+		wattroff(world.window, effect);
 	}
 }
 
